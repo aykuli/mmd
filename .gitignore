@@ -1,0 +1,10 @@
+vendors/
+vendor
+.idea
+
+config/master.key
+.env
+/log
+tmp/
+.byebug_history
+
