@@ -16,6 +16,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "gender_enum", ["female", "male"]
   create_enum "measurement_warnings", ["HIGH", "LOW"]
 
   create_table "entities", force: :cascade do |t|
@@ -24,12 +25,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
     t.integer "max"
     t.integer "min"
     t.integer "user_id"
+    t.enum "gender", default: "female", enum_type: "gender_enum"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["code", "gender"], name: "entity_code_gender_idx", unique: true
+    t.check_constraint "max > min", name: "entity_max_min_check"
   end
 
   create_table "measurements", force: :cascade do |t|
     t.integer "entity_id"
+    t.date "measured_at"
     t.integer "value"
     t.enum "warning", enum_type: "measurement_warnings"
     t.datetime "created_at", null: false
