@@ -41,3 +41,7 @@ end
 gem "rspec-rails", "~> 6.0"
 
 gem "rswag", "~> 2.11"
+
+gem "bcrypt", "~> 3.1"
+
+gem "config", "~> 5.0"

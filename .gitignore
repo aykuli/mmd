@@ -7,4 +7,6 @@ config/master.key
 /log
 tmp/
 .byebug_history
+.me_miself_and_i
+config/settings.yml
 
