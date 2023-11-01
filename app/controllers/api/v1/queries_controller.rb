@@ -5,7 +5,7 @@ module Api
     class QueriesController < ApplicationController
       def entities_list
         entities = Entity.all
-        render entities.map { { id: _1.id, code: _1.code, title: _1.title } }
+        render status: 200, json: {entities: entities.map { { id: _1.id, code: _1.code, title: _1.title } } }
       end
 
       def list
