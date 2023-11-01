@@ -10,14 +10,17 @@ class CreateEntities < ActiveRecord::Migration[7.1]
       t.timestamps
     end
 
-    create_enum :gender_enum, [:female, :male]
+    create_enum :gender_enum, [:female, :male, :both]
     create_table :entities do |t|
-      t.string :title
-      t.string :code
-      t.integer :max
-      t.integer :min
-      t.integer :user_id, default: nil
-      t.enum :gender, enum_type: :gender_enum, default: :female
+      t.string :title, null: false
+      t.string :alias
+      t.string :code, null: false
+      t.integer :max, null: false
+      t.integer :min, null: false
+      t.string :unit, null: false
+      t.text :description
+      t.integer :user_id
+      t.enum :gender, enum_type: :gender_enum, default: :both
 
       t.timestamps
     end
