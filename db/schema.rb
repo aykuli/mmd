@@ -16,26 +16,37 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "entity_gender_enum", ["female", "male", "both"]
   create_enum "gender_enum", ["female", "male"]
   create_enum "measurement_warnings", ["HIGH", "LOW"]
 
   create_table "entities", force: :cascade do |t|
-    t.string "title"
-    t.string "code"
-    t.integer "max"
-    t.integer "min"
-    t.integer "user_id"
-    t.enum "gender", default: "female", enum_type: "gender_enum"
+    t.string "title", null: false
+    t.string "alias"
+    t.string "code", null: false
+    t.decimal "max", null: false
+    t.decimal "min", null: false
+    t.string "unit", null: false
+    t.text "description"
+    t.enum "gender", default: "both", enum_type: "entity_gender_enum"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code", "gender"], name: "entity_code_gender_idx", unique: true
     t.check_constraint "max > min", name: "entity_max_min_check"
   end
 
+  create_table "entities_users", id: false, force: :cascade do |t|
+    t.bigint "entity_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["entity_id"], name: "index_entities_users_on_entity_id"
+    t.index ["user_id"], name: "index_entities_users_on_user_id"
+  end
+
   create_table "measurements", force: :cascade do |t|
     t.integer "entity_id"
+    t.integer "user_id"
     t.date "measured_at"
-    t.integer "value"
+    t.decimal "value"
     t.enum "warning", enum_type: "measurement_warnings"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -46,6 +57,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
     t.string "email"
     t.string "first_name"
     t.string "last_name"
+    t.enum "gender", default: "female", enum_type: "gender_enum"
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
