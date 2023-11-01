@@ -31,6 +31,14 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 
   gem "byebug", "~> 11.1"
+  # Code analysis and formatting
+  gem 'rubocop', '~> 1.53.1', require: false
+  # Rails-specific analysis
+  gem 'rubocop-rails', '~> 2.20.2', require: false
+  # RSpec-specific analysis
+  gem 'rubocop-rspec', '~> 2.22.0', require: false
+  # Performance analysis
+  gem 'rubocop-performance', '~> 1.18.0', require: false
 end
 
 group :development do
