@@ -9,6 +9,7 @@ AllCops:
   Exclude:
     - bin/**/*
     - config/routes.rb
+    - config/application.rb
     - db/schema.rb
     - db/migrate/**/*
     - db/seeds/*.rb

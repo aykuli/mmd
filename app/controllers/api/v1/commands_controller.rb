@@ -2,10 +2,8 @@
 
 module Api
   module V1
+    # Describes rules of creating or updating existing data
     class CommandsController < ApplicationController
-      def list
-        byebug params
-      end
     end
   end
 end
