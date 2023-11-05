@@ -29,27 +29,19 @@ Layout/LineLength:
     - db/migrate/*.rb
     - spec/**/*_spec.rb
     - spec/factories/**/*.rb
-    - plugins/*/config/initializers/ioc.rb
-    - plugins/*/lib/**/*.rb
-    - plugins/**/spec/**/*.rb
 
 Style/FrozenStringLiteralComment:
   Exclude:
     - config/**/*.rb
     - spec/**/*.rb
-    - plugins/*/spec/**/*.rb
-
 Style/ExponentialNotation:
   Enabled: false
-
-Style/ExplicitBlockArgument:
-  Exclude:
-    - app/use_cases/concerns/transactionable.rb
+Style/Documentation:
+  Enabled: false
 
 Metrics/ClassLength:
   Exclude:
     - app/controllers/**/*.rb
-    - plugins/*/lib/**/**/railtie.rb
 
 Metrics/AbcSize:
   Max: 22
@@ -62,9 +54,6 @@ Metrics/BlockLength:
     - config/initializers/ioc.rb
     - spec/**/*_spec.rb
     - spec/factories/**/*.rb
-    - plugins/*/config/initializers/ioc.rb
-    - plugins/*/spec/**/*
-    - plugins/*/lib/**/**/railtie.rb
 
 Naming/RescuedExceptionsVariableName:
   PreferredName: error
@@ -73,8 +62,6 @@ Lint/MissingSuper:
   Exclude:
     - app/carriers/**/*.rb
     - app/contracts/**/*.rb
-    - plugins/**/lib/**/**/handlers/*.rb
-    - plugins/**/lib/**/**/contracts/*.rb
 
 Rails/DynamicFindBy:
   Enabled: false
@@ -93,17 +80,6 @@ Style/NumberedParametersLimit:
 
 Metrics/MethodLength:
   Max: 12
-  Exclude:
-    - plugins/**/lib/**/**/presenters/*.rb
-
-Lint/ConstantDefinitionInBlock:
-  Exclude:
-    - plugins/**/spec/**/*.rb
-    - plugins/**/spec/*.rb
-
-Rails/SkipsModelValidations:
-  Exclude:
-    - plugins/codd-*/lib/codd/**/**/*.rb
 
 Style/EmptyCaseCondition:
   Enabled: false
@@ -119,66 +95,22 @@ RSpec/MultipleExpectations:
   Max: 8
 
 RSpec/ExampleLength:
-  Exclude:
-    - plugins/**/spec/**/*.rb
   Max: 8
 
 RSpec/ScatteredSetup:
   Exclude:
     - spec/integration/**/*.rb
-    - plugins/*/spec/integration/**/*.rb
 
 RSpec/EmptyExampleGroup:
   Exclude:
     - spec/integration/**/*.rb
-    - plugins/*/spec/integration/**/*.rb
 
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
 
-RSpec/FilePath:
-  Exclude:
-    - plugins/*/spec/**/*.rb
-
-RSpec/LetSetup:
-  Exclude:
-    - plugins/*/spec/**/*.rb
-
-RSpec/NamedSubject:
-  Exclude:
-    - plugins/**/spec/**/*.rb
-    - plugins/**/spec/*.rb
-
-RSpec/LeakyConstantDeclaration:
-  Exclude:
-    - plugins/**/spec/*.rb
-
-RSpec/VerifiedDoubles:
-  Exclude:
-    - plugins/**/spec/**/*.rb
-
-RSpec/ContextWording:
-  Exclude:
-    - plugins/**/spec/**/*.rb
-
-RSpec/ContextMethod:
-  Exclude:
-    - plugins/**/spec/**/*.rb
-
-RSpec/SharedContext:
-  Exclude:
-    - plugins/**/spec/**/**/*.rb
-
-RSpec/SubjectDeclaration:
-  Exclude:
-    - plugins/**/spec/**/*.rb
 
 RSpec/NestedGroups:
   Max: 4
-
-RSpec/AnyInstance:
-  Exclude:
-    - plugins/**/spec/**/*.rb
 
 FactoryBot/AssociationStyle:
   Enabled: false

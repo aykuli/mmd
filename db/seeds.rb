@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
-user = User.create! email: 'a@b.com', password: 'password', first_name: 'Aaaa', last_name: 'Bbbbb'
-# ruslan = User.create! email: 'ab@b.com', password: 'password', first_name: 'Child_of_Aaaa', last_name: 'Child_of_Bbbbb', parent_id: user.id, gender: :male
+user = User.find_or_initialize_by email: 'a@b.com'
+user.password= 'password'
+user.first_name= 'Aaaa'
+user.last_name= 'Bbbbb'
+user.save!
+# son = User.find_or_initalize_by first_name: 'Son', last_name: nil, parent_id: user.id, gender: :male
 
 female_hemoglobin = Entity.find_or_create_by! code: 'hemoglobin', title: 'Гемоглобин',
                                               min: 120, max: 140, unit: ' г/л', gender: :female,
