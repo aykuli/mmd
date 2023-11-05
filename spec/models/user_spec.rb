@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject(:user) { create(:user) }
+
+  describe '.new' do |example|
+    byebug
+    it 'returns parent like user' do
+      expect(user).to respond_to(:sessions, :children)
+    end
+  end
 end

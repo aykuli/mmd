@@ -2,7 +2,6 @@
 
 module Api
   module V1
-    # Describes rules of querying existing data
     class QueriesController < ApplicationController
       def entities_list
         entities = Entity.where(gender: %w[female both])

@@ -1,16 +1,30 @@
 class CreateEntities < ActiveRecord::Migration[7.1]
-  def change
+  def up
     create_enum :gender_enum, [:female, :male]
     create_table :users do |t|
-      t.string :password_digest
       t.string :email
+      t.string :password_digest
       t.string :first_name
       t.string :last_name
       t.enum :gender, enum_type: :gender_enum, default: :female
       t.integer :parent_id, default: nil
+      t.string :member
+      t.boolean :confirmed, default: false
 
       t.timestamps
     end
+
+    create_table :parents_children do |t|
+      t.integer :parent_id, null: false
+      t.integer :child_id, null: false
+    end
+
+    create_table :sessions, id: :uuid do |t|
+      t.integer :user_id, null: false
+    end
+
+    add_foreign_key :sessions, :users, column: :user_id, name: :sessions_user_fkey
+
 
     create_enum :entity_gender_enum, [:female, :male, :both]
     create_table :entities do |t|
