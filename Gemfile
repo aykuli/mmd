@@ -15,7 +15,7 @@ gem "puma", ">= 5.0"
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
@@ -41,15 +41,23 @@ group :development, :test do
   gem 'rubocop-performance', '~> 1.18.0', require: false
 end
 
+group :test do
+  gem "rspec-rails", "~> 6.0"
+
+  # Integration tests and automated API documentation
+  gem "rswag", "~> 2.11"
+
+  # Factories generator
+  gem "factory_bot_rails", "~> 6.2"
+
+  # Dumb data generator
+  gem "ffaker", "~> 2.23", :group => :test
+end
+
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
 
-gem "rspec-rails", "~> 6.0"
-
-gem "rswag", "~> 2.11"
-
-gem "bcrypt", "~> 3.1"
-
 gem "config", "~> 5.0"
+
