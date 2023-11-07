@@ -83,4 +83,23 @@ soe = Entity.find_by code: 'soe'
 EntityUserRelation.find_or_create_by! user:, entity: soe
 Measurement.find_or_create_by! user:, entity: soe, measured_at: DateTime.new(2023, 10, 3), value: 49, warning: :HIGH
 
+sgpt = Entity.find_by code: 'sgpt'
+EntityUserRelation.find_or_create_by! user:, entity: sgpt
+Measurement.find_or_create_by! user:, entity: sgpt, measured_at: DateTime.new(2023, 10, 3), value: 7
+sgot = Entity.find_by code: 'sgot'
+EntityUserRelation.find_or_create_by! user:, entity: sgot
+Measurement.find_or_create_by! user:, entity: sgot, measured_at: DateTime.new(2023, 10, 3), value: 21
+
+hba1c = Entity.find_by code: 'hba1c'
+EntityUserRelation.find_or_create_by! user:, entity: hba1c
+Measurement.find_or_create_by! user:, entity: hba1c, measured_at: DateTime.new(2023, 10, 3), value: 5.3
+
+total_protein = Entity.find_by code: 'total_protein'
+EntityUserRelation.find_or_create_by! user:, entity: total_protein
+Measurement.find_or_create_by! user:, entity: total_protein, measured_at: DateTime.new(2023, 10, 3), value: 72
+
+cholesterin = Entity.find_by code: 'cholesterin'
+EntityUserRelation.find_or_create_by! user:, entity: cholesterin
+Measurement.find_or_create_by! user:, entity: cholesterin, measured_at: DateTime.new(2023, 10, 3), value: 3.56
+
 Entity.find_by code: 'ferritin', gender: :male

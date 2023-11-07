@@ -23,7 +23,7 @@ Layout/LineLength:
   Max: 140
   Exclude:
     - config/initializers/ioc.rb
-    - db/migrate/*.rb
+    - db/**/*.rb
     - spec/**/*_spec.rb
     - spec/factories/**/*.rb
 

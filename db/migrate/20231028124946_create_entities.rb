@@ -38,6 +38,7 @@ class CreateEntities < ActiveRecord::Migration[7.1]
       t.decimal :min, null: false
       t.string :unit, null: false
       t.text :description
+      t.integer :group_id, default: null
       t.enum :gender, enum_type: :entity_gender_enum, default: :both
 
       t.timestamps
@@ -45,11 +46,21 @@ class CreateEntities < ActiveRecord::Migration[7.1]
 
     add_index :entities, %i[code gender], unique: true, name: :entity_code_gender_idx
     add_check_constraint :entities, 'max > min', name: :entity_max_min_check
+    add_foreign_key :entities, :entity_groups, column: :group_id, name: :entities_entity_groups_fkey
 
     create_join_table :entities, :users do |t|
       t.index :entity_id
       t.index :user_id
     end
+
+    create_table :entity_groups do |t|
+      t.string :code
+      t.string :title
+
+      t.timestamps
+    end
+
+    add_index :entity_groups, :code, unique: true, name: :entity_groups_code_idx
 
     create_enum :measurement_warnings, %w[HIGH LOW]
     create_table :measurements do |t|
