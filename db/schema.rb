@@ -52,13 +52,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "parents_children", force: :cascade do |t|
+  create_table "parents_children", id: false, force: :cascade do |t|
     t.integer "parent_id", null: false
     t.integer "child_id", null: false
   end
 
   create_table "sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,7 +71,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
     t.enum "gender", default: "female", enum_type: "gender_enum"
     t.integer "parent_id"
     t.string "member"
-    t.boolean "confirmed", default: false
+    t.boolean "confirmed", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -11,9 +11,6 @@ AllCops:
     - config/routes.rb
     - config/application.rb
     - db/schema.rb
-    - db/migrate/**/*
-    - db/seeds/*.rb
-    - db/seeds.rb
     - vendor/**/*
     - Gemfile
     - Gemfile.package
@@ -26,7 +23,7 @@ Layout/LineLength:
   Max: 140
   Exclude:
     - config/initializers/ioc.rb
-    - db/migrate/*.rb
+    - db/**/*.rb
     - spec/**/*_spec.rb
     - spec/factories/**/*.rb
 
@@ -45,6 +42,8 @@ Metrics/ClassLength:
 
 Metrics/AbcSize:
   Max: 22
+  Exclude:
+    - db/**/*.rb
 
 Layout/MultilineMethodCallIndentation:
   Enabled: false
@@ -80,6 +79,8 @@ Style/NumberedParametersLimit:
 
 Metrics/MethodLength:
   Max: 12
+  Exclude:
+    - db/**/*.rb
 
 Style/EmptyCaseCondition:
   Enabled: false
@@ -108,7 +109,6 @@ RSpec/EmptyExampleGroup:
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
 
-
 RSpec/NestedGroups:
   Max: 4
 
@@ -116,4 +116,3 @@ FactoryBot/AssociationStyle:
   Enabled: false
 FactoryBot/IdSequence:
   Enabled: false
-
