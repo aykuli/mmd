@@ -8,4 +8,3 @@ EntityGroup.find_or_create_by! code: 'lipid_panel', title: 'Липидный с�
 EntityGroup.find_or_create_by! code: 'inorganic_substances', title: 'Неорганические вещества'
 EntityGroup.find_or_create_by! code: 'vitamins', title: 'Витамины'
 EntityGroup.find_or_create_by! code: 'thyroid_function', title: 'Функция щитовидной железы'
-

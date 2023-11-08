@@ -143,43 +143,41 @@ Entity.find_or_create_by! code: 'sgot', title: 'АcАТ', group_id: enzymes.id,
                           min: 8, max: 48, unit: ' МЕ/л',
                           description: 'Аспартатаминотрансфераза - маркерные ферменты для миокарда.'
 
-inorganic_substances =EntityGroup.find_by code: 'inorganic_substances'
+inorganic_substances = EntityGroup.find_by code: 'inorganic_substances'
 Entity.find_or_create_by! code: 'kalium', title: 'Калий', group_id: inorganic_substances.id,
                           min: 3.4, max: 4.7, unit: ' ммоль/л',
                           description: 'Калий, натрий и хлор — это электролиты — вещества, которые поддерживают уровень воды и кислотно-щелочной баланс в организме. Анализ помогает выявить дисбаланс электролитов, который сопровождает многие острые и хронические заболевания.'
 Entity.find_or_create_by! code: 'natrium', title: 'Натрий', group_id: inorganic_substances.id,
                           min: 138, max: 145, unit: ' ммоль/л',
                           description: 'Калий, натрий и хлор — это электролиты — вещества, которые поддерживают уровень воды и кислотно-щелочной баланс в организме. Анализ помогает выявить дисбаланс электролитов, который сопровождает многие острые и хронические заболевания.'
-Entity.find_or_create_by! code:'chlorine', title: 'Хлор', group_id: inorganic_substances.id,
+Entity.find_or_create_by! code: 'chlorine', title: 'Хлор', group_id: inorganic_substances.id,
                           min: 101, max: 110, unit: ' ммоль/л',
                           description: 'Калий, натрий и хлор — это электролиты — вещества, которые поддерживают уровень воды и кислотно-щелочной баланс в организме. Анализ помогает выявить дисбаланс электролитов, который сопровождает многие острые и хронические заболевания.'
 
 vitamins = EntityGroup.find_by code: 'vitamins'
-Entity.find_or_create_by! code:'b12', title: 'Активный витамин В12', group_id: vitamins.id,
+Entity.find_or_create_by! code: 'b12', title: 'Активный витамин В12', group_id: vitamins.id,
                           min: 25, max: 165, unit: ' пмоль/л',
                           description: 'Витамин B12 необходим для созревания эритроцитов — красных клеток крови. При его нехватке развивается анемия, страдают сердечно-сосудистая и нервная системы. '
-Entity.find_or_create_by! code:'folic_acid', title: 'Фолиевая кислота', group_id: vitamins.id,
+Entity.find_or_create_by! code: 'folic_acid', title: 'Фолиевая кислота', group_id: vitamins.id,
                           min: 3.1, max: 20.5, unit: ' пмоль/л',
                           description: 'Фолиевая кислота - водорастворимый витамин, необходимый для роста и развития кровеносной и иммунной систем.'
 
 thyroid_function = EntityGroup.find_by code: 'thyroid_function'
-Entity.find_or_create_by! code:'t3_total', title: 'Т3 общий', group_id: thyroid_function.id,
+Entity.find_or_create_by! code: 't3_total', title: 'Т3 общий', group_id: thyroid_function.id,
                           min: 1.5, max: 2.71, unit: ' нмоль/л',
                           description: 'Трийодтиронин (Т3) – один из двух главных гормонов щитовидной железы, основной функцией которого является регуляция энергетического (главным образом поглощения кислорода тканями) и пластического обмена в организме. Общий трийодтиронин – это сумма двух фракций: связанной и не связанной с белками плазмы крови.'
-Entity.find_or_create_by! code:'t3_free', title: 'Т3 свободный', group_id: thyroid_function.id,
+Entity.find_or_create_by! code: 't3_free', title: 'Т3 свободный', group_id: thyroid_function.id,
                           min: 4.4, max: 6.7, unit: ' пмоль/л',
                           description: 'Трийодтиронин свободный (Т3 св.) – это гормон, который вырабатывает щитовидная железа и который крайне важен для адекватного функционирования организма. Цифра три обозначает число содержания в его молекуле атомов йода. Основная функция Т3 свободного - стимуляция тканей к всасыванию кислорода и активизация метаболизма.'
-Entity.find_or_create_by! code:'t4_total', title: 'Т4 общий', group_id: thyroid_function.id,
+Entity.find_or_create_by! code: 't4_total', title: 'Т4 общий', group_id: thyroid_function.id,
                           min: 64.5, max: 106.5, unit: ' нмоль/л',
                           description: 'Тироксин (Т4) – один из двух главных гормонов щитовидной железы, основной функцией которого является регуляция энергетического и пластического обмена в организме. Общий тироксин – это сумма двух фракций: связанной и не связанной с белками плазмы крови.'
-Entity.find_or_create_by! code:'t4_free', title: 'Т4 свободный', group_id: thyroid_function.id,
+Entity.find_or_create_by! code: 't4_free', title: 'Т4 свободный', group_id: thyroid_function.id,
                           min: 9.98, max: 14.29, unit: ' пмоль/л',
                           description: 'Свободный Т4 позволяет оценить функцию щитовидной железы вне зависимости от концентрации белков крови, которые его связывают. Анализ на Т4 обычно назначают в комплексе с анализом крови на ТТГ (тиреотропный гормон, вырабатываемый гипофизом), от которого зависит выработка тироксина.'
-Entity.find_or_create_by! code:'ttg', title: 'ТТГ', group_id: thyroid_function.id,
+Entity.find_or_create_by! code: 'ttg', title: 'ТТГ', group_id: thyroid_function.id,
                           min: 0.7, max: 4.17, unit: ' мЕд/л',
                           description: 'Тиреотропный гормон (ТТГ)  –  основной регулятор функции щитовидной железы, синтезирующийся гипофизом  –  небольшой железой, которая расположена на нижней поверхности головного мозга. Основная его функция  –  поддерживать постоянную концентрацию гормонов щитовидной железы –  тиреоидных гормонов, которые регулируют процессы образования энергии в организме. Когда их содержание в крови понижается, гипоталамус высвобождает гормон, стимулирующий секрецию ТТГ гипофизом.'
-
-
 
 # unknown group
 Entity.find_or_create_by! code: 'alkaline_phosphatase', title: 'Фосфатаза щелочная',

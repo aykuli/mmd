@@ -29,6 +29,13 @@ class CreateEntities < ActiveRecord::Migration[7.1]
 
     add_foreign_key :sessions, :users, column: :user_id, name: :sessions_user_fkey
 
+    create_table :entity_groups do |t|
+      t.string :code
+      t.string :title
+
+      t.timestamps
+    end
+
     create_enum :entity_gender_enum, %i[female male both]
     create_table :entities do |t|
       t.string :title, null: false
@@ -38,7 +45,7 @@ class CreateEntities < ActiveRecord::Migration[7.1]
       t.decimal :min, null: false
       t.string :unit, null: false
       t.text :description
-      t.integer :group_id, default: null
+      t.integer :group_id, default: nil
       t.enum :gender, enum_type: :entity_gender_enum, default: :both
 
       t.timestamps
@@ -51,13 +58,6 @@ class CreateEntities < ActiveRecord::Migration[7.1]
     create_join_table :entities, :users do |t|
       t.index :entity_id
       t.index :user_id
-    end
-
-    create_table :entity_groups do |t|
-      t.string :code
-      t.string :title
-
-      t.timestamps
     end
 
     add_index :entity_groups, :code, unique: true, name: :entity_groups_code_idx

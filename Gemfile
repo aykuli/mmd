@@ -61,3 +61,11 @@ end
 
 gem "config", "~> 5.0"
 
+# Write a better use cases with
+gem 'diy-carrierable', github: 'diy-rb/diy-carrierable'
+
+# Control inversion
+gem 'dry-container', '~> 0.11.0'
+
+# Additional control over dry-containers
+gem 'aux', '~> 0.1.1'

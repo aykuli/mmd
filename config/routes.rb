@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api, format: :json do
     namespace :v1 do
-      post 'register', to: 'users#create'
+      get 'family', to: 'users#family'
 
       get 'entities/list', to: 'queries#entities_list'
       post 'entities/list', to: 'queries#entities_list'

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 ayn = User.find_by(first_name: 'Ayn')
+ayn.children
 user = User.find_or_create_by! first_name: 'Rus', last_name: nil, parent_id: ayn.id, gender: :male, password_digest: ayn.password_digest
 
 hematokrit = Entity.find_by code: 'hct'
@@ -133,27 +134,27 @@ Measurement.find_or_create_by! user:, entity: ferritin, measured_at: DateTime.ne
 b12 = Entity.find_by code: 'b12'
 EntityUserRelation.find_or_create_by! user:, entity: b12
 Measurement.find_or_create_by! user:, entity: b12, measured_at: DateTime.new(2023, 10, 3), value: 39
-folic_acid =  Entity.find_by code: 'folic_acid'
+folic_acid = Entity.find_by code: 'folic_acid'
 EntityUserRelation.find_or_create_by! user:, entity: folic_acid
 Measurement.find_or_create_by! user:, entity: folic_acid, measured_at: DateTime.new(2023, 10, 3), value: 2.8
-t3_total =  Entity.find_by code: 't3_total'
+t3_total = Entity.find_by code: 't3_total'
 EntityUserRelation.find_or_create_by! user:, entity: t3_total
 Measurement.find_or_create_by! user:, entity: t3_total, measured_at: DateTime.new(2023, 10, 3), value: 2.26
-t3_free =  Entity.find_by code: 't3_free'
+t3_free = Entity.find_by code: 't3_free'
 EntityUserRelation.find_or_create_by! user:, entity: t3_free
 Measurement.find_or_create_by! user:, entity: t3_free, measured_at: DateTime.new(2023, 10, 3), value: 5.9
-t4_total =  Entity.find_by code: 't4_total'
+t4_total = Entity.find_by code: 't4_total'
 EntityUserRelation.find_or_create_by! user:, entity: t4_total
 Measurement.find_or_create_by! user:, entity: t4_total, measured_at: DateTime.new(2023, 10, 3), value: 121.45
-t4_free =  Entity.find_by code: 't4_free'
+t4_free = Entity.find_by code: 't4_free'
 EntityUserRelation.find_or_create_by! user:, entity: t4_free
 Measurement.find_or_create_by! user:, entity: t4_free, measured_at: DateTime.new(2023, 10, 3), value: 13.58
-ttg =  Entity.find_by code: 'ttg'
+ttg = Entity.find_by code: 'ttg'
 EntityUserRelation.find_or_create_by! user:, entity: ttg
 Measurement.find_or_create_by! user:, entity: ttg, measured_at: DateTime.new(2023, 10, 3), value: 3.02
-homocysteine=Entity.find_by code: 'homocysteine'
+homocysteine = Entity.find_by code: 'homocysteine'
 EntityUserRelation.find_or_create_by! user:, entity: homocysteine
 Measurement.find_or_create_by! user:, entity: homocysteine, measured_at: DateTime.new(2023, 10, 3), value: 10.58
-ecp =Entity.find_by code: 'ecp'
+ecp = Entity.find_by code: 'ecp'
 EntityUserRelation.find_or_create_by! user:, entity: ecp
 Measurement.find_or_create_by! user:, entity: ecp, measured_at: DateTime.new(2023, 10, 3), value: 139
