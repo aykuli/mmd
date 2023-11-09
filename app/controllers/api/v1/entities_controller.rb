@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class QueriesController < ApplicationController
+    class EntitiesController < ApplicationController
       def entities_list
         entities = Entity.where(gender: %w[female both])
         render status: :ok, json: { entities: entities.map { { id: _1.id, code: _1.code, title: _1.title } } }

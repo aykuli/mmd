@@ -15,7 +15,7 @@ module Api
       def use_case = Rails.configuration.ioc.resolve('filter_family_use_case')
 
       # @return [<UserPresenter>]
-      def user_presenter = Rails.configuration.ioc.resolve('users_presenter')
+      def user_presenter = Rails.configuration.ioc.resolve('user_presenter')
     end
   end
 end

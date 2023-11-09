@@ -26,7 +26,51 @@ Layout/LineLength:
     - db/**/*.rb
     - spec/**/*_spec.rb
     - spec/factories/**/*.rb
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
 
+Lint/MissingSuper:
+  Exclude:
+    - app/carriers/**/*.rb
+    - app/contracts/**/*.rb
+
+Metrics/MethodLength:
+  Max: 12
+  Exclude:
+    - db/**/*.rb
+Metrics/BlockLength:
+  Exclude:
+    - config/initializers/ioc.rb
+    - spec/**/*_spec.rb
+    - spec/factories/**/*.rb
+Metrics/ClassLength:
+  Exclude:
+    - app/controllers/**/*.rb
+Metrics/AbcSize:
+  Max: 22
+  Exclude:
+    - db/**/*.rb
+
+Naming/RescuedExceptionsVariableName:
+  PreferredName: error
+
+Rails/DynamicFindBy:
+  Enabled: false
+Rails/ShortI18n:
+  Enabled: false
+Rails/WhereNot:
+  Enabled: false
+Rails/InverseOf:
+  Enabled: false
+Rails/WhereEquals:
+  Enabled: false
+
+Style/NumberedParameters:
+  Enabled: false
+Style/NumberedParametersLimit:
+  Max: 2
+Style/EmptyCaseCondition:
+  Enabled: false
 Style/FrozenStringLiteralComment:
   Exclude:
     - config/**/*.rb
@@ -36,79 +80,23 @@ Style/ExponentialNotation:
 Style/Documentation:
   Enabled: false
 
-Metrics/ClassLength:
-  Exclude:
-    - app/controllers/**/*.rb
-
-Metrics/AbcSize:
-  Max: 22
-  Exclude:
-    - db/**/*.rb
-
-Layout/MultilineMethodCallIndentation:
-  Enabled: false
-
-Metrics/BlockLength:
-  Exclude:
-    - config/initializers/ioc.rb
-    - spec/**/*_spec.rb
-    - spec/factories/**/*.rb
-
-Naming/RescuedExceptionsVariableName:
-  PreferredName: error
-
-Lint/MissingSuper:
-  Exclude:
-    - app/carriers/**/*.rb
-    - app/contracts/**/*.rb
-
-Rails/DynamicFindBy:
-  Enabled: false
-
-Rails/ShortI18n:
-  Enabled: false
-
-Rails/WhereNot:
-  Enabled: false
-
-Style/NumberedParameters:
-  Enabled: false
-
-Style/NumberedParametersLimit:
-  Max: 2
-
-Metrics/MethodLength:
-  Max: 12
-  Exclude:
-    - db/**/*.rb
-
-Style/EmptyCaseCondition:
-  Enabled: false
-
-Rails/WhereEquals:
-  Enabled: false
+# TEST CODE STYLES
 
 RSpec/DescribeClass:
   Exclude:
     - spec/integration/**/*.rb
-
 RSpec/MultipleExpectations:
   Max: 8
-
 RSpec/ExampleLength:
   Max: 8
-
 RSpec/ScatteredSetup:
   Exclude:
     - spec/integration/**/*.rb
-
 RSpec/EmptyExampleGroup:
   Exclude:
     - spec/integration/**/*.rb
-
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
-
 RSpec/NestedGroups:
   Max: 4
 
