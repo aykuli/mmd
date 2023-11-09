@@ -8,8 +8,7 @@ Rails.application.routes.draw do
       post 'measurements', to: 'measurements#filter'
       post 'measurements/dates', to: 'measurements#dates'
 
-      get 'entities/list', to: 'entities#entities_list'
-      post 'entities/list', to: 'entities#entities_list'
+      post 'entities/filter', to: 'entities#filter'
       get ':entity', to: 'entities#list'
       post ':entity', to: 'entities#list'
     end

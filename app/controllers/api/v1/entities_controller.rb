@@ -3,7 +3,8 @@
 module Api
   module V1
     class EntitiesController < ApplicationController
-      def entities_list
+      def filter
+        use_case.call(command.new(allowed_params), User.find(1))
         entities = Entity.where(gender: %w[female both])
         render status: :ok, json: { entities: entities.map { { id: _1.id, code: _1.code, title: _1.title } } }
       end
@@ -15,6 +16,16 @@ module Api
 
         render status: :ok, json: { measurements: measurements.map { MeasurementPresenter.call(_1, entity) } }
       end
+
+      private
+
+      def allowed_params = command.schema.keys.map(&:name)
+
+      def command = ioc.resolve('filter_entities_command')
+      def use_case = ioc.resolve('filter_entities_use_case')
+      def presenter = ioc.resolve('entity_presenter')
+
+      def ioc = Rails.configuration.ioc
     end
   end
 end

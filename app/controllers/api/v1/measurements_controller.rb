@@ -18,7 +18,7 @@ module Api
 
       private
 
-      def allowed_params = params.except(:controller, :action, :measurement).permit!
+      def allowed_params = command.schema.keys.map(&:name)
 
       def command = ioc.resolve('filter_measurements_command')
       def use_case = ioc.resolve('filter_measurements_use_case')
