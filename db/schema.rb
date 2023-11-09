@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
     t.decimal "min", null: false
     t.string "unit", null: false
     t.text "description"
+    t.integer "group_id"
     t.enum "gender", default: "both", enum_type: "entity_gender_enum"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,6 +41,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
     t.bigint "user_id", null: false
     t.index ["entity_id"], name: "index_entities_users_on_entity_id"
     t.index ["user_id"], name: "index_entities_users_on_user_id"
+  end
+
+  create_table "entity_groups", force: :cascade do |t|
+    t.string "code"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "entity_groups_code_idx", unique: true
   end
 
   create_table "measurements", force: :cascade do |t|
@@ -76,5 +85,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "entities", "entity_groups", column: "group_id", name: "entities_entity_groups_fkey"
   add_foreign_key "sessions", "users", name: "sessions_user_fkey"
 end

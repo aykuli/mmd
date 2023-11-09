@@ -2,6 +2,10 @@
 
 # Describes presentation rules for measurements
 class MeasurementPresenter < ApplicationController
+  include Aux::Pluggable
+
+  register
+
   def self.call(measurement, entity)
     {
       id: measurement.id,

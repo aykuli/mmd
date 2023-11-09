@@ -2,25 +2,20 @@
 
 module Api
   module V1
-    class UsersController
-      def create
-        permitted_params = user_params
+    class UsersController < ApplicationController
+      def family
+        result = use_case.call(nil, nil)
 
-        user = User.new permitted_params.except(:parent_id)
-        if user.save
-          ParentUserRelation.new user_id: user.id, parent_id: permitted_params[:parent_id] if permitted_params[:parent_id]
-
-          render status: :created, json: { message: 'User successfully created!\nCheck email to confirm!' }
-        else
-          render status: :unprocessable_entity, json: { message: 'Try again!' }
-        end
+        render status: :ok, json: { users: result.payload.map { user_presenter.call(_1) } }
       end
 
       private
 
-      def user_params
-        params.require(:user).permit :email, :password, :first_name, :last_name, :gender, :member, :parent_id
-      end
+      # @return [<UserPresenter>]
+      def use_case = Rails.configuration.ioc.resolve('filter_family_use_case')
+
+      # @return [<UserPresenter>]
+      def user_presenter = Rails.configuration.ioc.resolve('user_presenter')
     end
   end
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 ayn = User.find_by(first_name: 'Ayn')
+ayn.children
 user = User.find_or_create_by! first_name: 'Rus', last_name: nil, parent_id: ayn.id, gender: :male, password_digest: ayn.password_digest
 
 hematokrit = Entity.find_by code: 'hct'
@@ -102,4 +103,58 @@ cholesterin = Entity.find_by code: 'cholesterin'
 EntityUserRelation.find_or_create_by! user:, entity: cholesterin
 Measurement.find_or_create_by! user:, entity: cholesterin, measured_at: DateTime.new(2023, 10, 3), value: 3.56
 
-Entity.find_by code: 'ferritin', gender: :male
+alkaline_phosphatase = Entity.find_by code: 'alkaline_phosphatase'
+EntityUserRelation.find_or_create_by! user:, entity: alkaline_phosphatase
+Measurement.find_or_create_by! user:, entity: alkaline_phosphatase, measured_at: DateTime.new(2023, 10, 3), value: 355
+
+kalium = Entity.find_by code: 'kalium'
+EntityUserRelation.find_or_create_by! user:, entity: kalium
+Measurement.find_or_create_by! user:, entity: kalium, measured_at: DateTime.new(2023, 10, 3), value: 4.7
+
+natrium = Entity.find_by code: 'natrium'
+EntityUserRelation.find_or_create_by! user:, entity: natrium
+Measurement.find_or_create_by! user:, entity: natrium, measured_at: DateTime.new(2023, 10, 3), value: 138
+
+chlorine = Entity.find_by code: 'chlorine'
+EntityUserRelation.find_or_create_by! user:, entity: chlorine
+Measurement.find_or_create_by! user:, entity: chlorine, measured_at: DateTime.new(2023, 10, 3), value: 103
+
+crp = Entity.find_by code: 'crp'
+EntityUserRelation.find_or_create_by! user:, entity: crp
+Measurement.find_or_create_by! user:, entity: crp, measured_at: DateTime.new(2023, 10, 3), value: 2.4
+
+transferrin = Entity.find_by code: 'transferrin'
+EntityUserRelation.find_or_create_by! user:, entity: transferrin
+Measurement.find_or_create_by! user:, entity: transferrin, measured_at: DateTime.new(2023, 10, 3), value: 2.45
+
+ferritin = Entity.find_by code: 'ferritin', gender: :male
+EntityUserRelation.find_or_create_by! user:, entity: ferritin
+Measurement.find_or_create_by! user:, entity: ferritin, measured_at: DateTime.new(2023, 10, 3), value: 44
+
+b12 = Entity.find_by code: 'b12'
+EntityUserRelation.find_or_create_by! user:, entity: b12
+Measurement.find_or_create_by! user:, entity: b12, measured_at: DateTime.new(2023, 10, 3), value: 39
+folic_acid = Entity.find_by code: 'folic_acid'
+EntityUserRelation.find_or_create_by! user:, entity: folic_acid
+Measurement.find_or_create_by! user:, entity: folic_acid, measured_at: DateTime.new(2023, 10, 3), value: 2.8
+t3_total = Entity.find_by code: 't3_total'
+EntityUserRelation.find_or_create_by! user:, entity: t3_total
+Measurement.find_or_create_by! user:, entity: t3_total, measured_at: DateTime.new(2023, 10, 3), value: 2.26
+t3_free = Entity.find_by code: 't3_free'
+EntityUserRelation.find_or_create_by! user:, entity: t3_free
+Measurement.find_or_create_by! user:, entity: t3_free, measured_at: DateTime.new(2023, 10, 3), value: 5.9
+t4_total = Entity.find_by code: 't4_total'
+EntityUserRelation.find_or_create_by! user:, entity: t4_total
+Measurement.find_or_create_by! user:, entity: t4_total, measured_at: DateTime.new(2023, 10, 3), value: 121.45
+t4_free = Entity.find_by code: 't4_free'
+EntityUserRelation.find_or_create_by! user:, entity: t4_free
+Measurement.find_or_create_by! user:, entity: t4_free, measured_at: DateTime.new(2023, 10, 3), value: 13.58
+ttg = Entity.find_by code: 'ttg'
+EntityUserRelation.find_or_create_by! user:, entity: ttg
+Measurement.find_or_create_by! user:, entity: ttg, measured_at: DateTime.new(2023, 10, 3), value: 3.02
+homocysteine = Entity.find_by code: 'homocysteine'
+EntityUserRelation.find_or_create_by! user:, entity: homocysteine
+Measurement.find_or_create_by! user:, entity: homocysteine, measured_at: DateTime.new(2023, 10, 3), value: 10.58
+ecp = Entity.find_by code: 'ecp'
+EntityUserRelation.find_or_create_by! user:, entity: ecp
+Measurement.find_or_create_by! user:, entity: ecp, measured_at: DateTime.new(2023, 10, 3), value: 139
