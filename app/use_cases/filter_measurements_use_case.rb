@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FilterMeasurementUseCase
+class FilterMeasurementsUseCase
   include DIY::Carrierable
   include Aux::Pluggable
 
@@ -16,6 +16,7 @@ class FilterMeasurementUseCase
     return failure(:unprocessable_entity) unless [user.id, user.parent_id].include?(command.user_id)
 
     measurements = repository.where(command.attributes)
+
     success(measurements)
   end
 end

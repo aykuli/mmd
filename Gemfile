@@ -69,3 +69,4 @@ gem 'dry-container', '~> 0.11.0'
 
 # Additional control over dry-containers
 gem 'aux', '~> 0.1.1'
+gem "dry-struct", "~> 1.6"

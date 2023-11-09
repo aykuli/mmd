@@ -46,6 +46,7 @@ class CreateEntities < ActiveRecord::Migration[7.1]
       t.string :unit, null: false
       t.text :description
       t.integer :group_id, default: nil
+      t.integer :precedence, default: nil
       t.enum :gender, enum_type: :entity_gender_enum, default: :both
 
       t.timestamps

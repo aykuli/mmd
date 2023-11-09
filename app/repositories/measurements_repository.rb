@@ -5,23 +5,24 @@ class MeasurementsRepository
 
   register initialize: true, memoize: true
 
-  # @!method where(attributes)
-  #   @param attributes [Hash]
-  #   @return [ActiveRecord::Relation<User>]
   # @!method find_by(attributes)
   #   @param attributes [Hash]
-  #   @return [User, nil]
+  #   @return [Measurement, nil]
   # @!method find(id)
   #   @param id [Integer]
   #   @raise [ActiveRecord::RecordNotFound]
-  #   @return [User]
+  #   @return [Measurement]
   # @!method create!(attributes)
   #   @param attributes [Hash]
-  #   @return [User]
+  #   @return [Measurement]
   delegate :where, :find_by, :find, :create!, to: :model
+
+  # @param criteria [Hash]
+  # @return [ActiveRecord::Relation<Measurement>]
+  def filter(criteria = {}) = model.where(**criteria)
 
   private
 
-  # @return [Class<User>]
+  # @return [Class<Measurement>]
   def model = Measurement
 end
