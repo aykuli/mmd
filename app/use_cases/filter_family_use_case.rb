@@ -11,9 +11,9 @@ class FilterFamilyUseCase
   resolve :users_repository, as: :repository
 
   def call(_command, _user)
-    byebug
-    users = repository.where(id: 1, parent_id: 1)
-    byebug
-    success(users)
+    me = repository.where(id: 1)
+    relatives = repository.where(parent_id: 1)
+
+    success(me + relatives)
   end
 end

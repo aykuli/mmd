@@ -23,8 +23,5 @@ class UsersRepository
   private
 
   # @return [Class<User>]
-  def model
-    byebug
-    User
-  end
+  def model = User
 end
