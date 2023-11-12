@@ -4,25 +4,36 @@ module Api
   module V1
     class MeasurementsController < ApplicationController
       # TODO: pagination
-      def filter
-        result = use_case.call(command.new(params), User.find(1))
-
-        render status: :ok, json: { measurements: result.payload.map { presenter.call(_1) } }
-      end
+      # def filter
+      #   result = use_case.call(command.new(permitted_params), User.find(1))
+      #   byebug
+      #   if result.payload.nil?
+      #     render status: :unprocessable_entity, json: {message: 'Oy plohooo'}
+      #   end
+      #   byebug
+      #   render status: :ok, json: { measurements: result.payload.map { presenter.call(_1) } }
+      # end
 
       def dates
-        result = use_case.call(command.new(allowed_params), User.find(1))
+        return { status: :ok } if request.method == 'OPTIONS'
 
-        render json: { dates: result.payload.map { { id: _1.id, created_at: _1.created_at } } }
+        command = dates_command.new(permitted_params(dates_command))
+        result = use_case.dates(command, User.find(1))
+        byebug
+        render json: { dates: result.payload.map { { id: _1.id, measured_at: _1.measured_at } } }
       end
 
       private
 
-      def allowed_params = command.schema.keys.map(&:name)
+      def permitted_params(command) = params.permit(command.schema.keys.map(&:name))
 
-      def command = ioc.resolve('filter_measurements_command')
-      def use_case = ioc.resolve('filter_measurements_use_case')
+      def dates_command = ioc.resolve('dates_measurements_command')
+
+      # @return [MeasurementsUseCase]
+      def use_case = ioc.resolve('measurements_use_case')
+
       def presenter = ioc.resolve('measurement_presenter')
+
       def ioc = Rails.configuration.ioc
     end
   end

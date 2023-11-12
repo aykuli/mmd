@@ -5,12 +5,13 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'family', to: 'users#family'
 
-      post 'measurements', to: 'measurements#filter'
       post 'measurements/dates', to: 'measurements#dates'
+      options 'measurements/dates', to: 'measurements#dates'
+      # post 'measurements', to: 'measurements#filter'
 
-      post 'entities/filter', to: 'entities#filter'
-      get ':entity', to: 'entities#list'
-      post ':entity', to: 'entities#list'
+      # post 'entities/filter', to: 'entities#filter'
+      # get ':entity', to: 'entities#list'
+      # post ':entity', to: 'entities#list'
     end
   end
 end
