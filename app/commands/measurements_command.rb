@@ -4,7 +4,7 @@ module Types
   include Dry.Types()
 end
 
-class DatesMeasurementsCommand < Dry::Struct
+class MeasurementsCommand < Dry::Struct
   include ActiveModel::Validations
   include Aux::Pluggable
 
