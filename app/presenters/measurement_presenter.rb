@@ -18,7 +18,9 @@ class MeasurementPresenter < ApplicationController
       min: measurement.entity.min,
       unit: measurement.entity.unit,
       description: measurement.entity.description,
-      gender: measurement.entity.gender
+      gender: measurement.entity.gender,
+      entity_title: measurement.entity.title,
+      entity_code: measurement.entity.code
     }
   end
 end

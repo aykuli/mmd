@@ -19,8 +19,8 @@ class MeasurementsUseCase
 
   # @param command [MeasurementsCommand]
   def warnings(command)
-    measurements = repository.where(user_id: command.user_id, warnings: %i[LOW HIGH]).order(measured_at: :desc).limit(5)
-    byebug
+    measurements = repository.where(user_id: command.user_id, warning: %i[LOW HIGH]).order(measured_at: :desc).limit(5)
+
     success(measurements)
   end
 end

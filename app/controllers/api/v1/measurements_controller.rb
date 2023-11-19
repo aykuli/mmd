@@ -10,8 +10,8 @@ module Api
         warnings_command = command.new(permitted_params(command))
 
         result = use_case.warnings(warnings_command)
-        byebug
-        render json: { dates: result.payload.map { presenter.call _1 } }
+
+        render json: { warnings: result.payload.map { presenter.call _1 } }
       end
 
       def dates

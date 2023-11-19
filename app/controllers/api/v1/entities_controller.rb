@@ -4,11 +4,8 @@ module Api
   module V1
     class EntitiesController < ApplicationController
       def filter
-        byebug
         carried_res = use_case.call(command.new(allowed_params), User.find(1))
-        byebug
         Entity.where(gender: %w[female both])
-        byebug
         render status: :ok, json: { entities: carried_res.map { { id: _1.id, code: _1.code, title: _1.title } } }
       end
 

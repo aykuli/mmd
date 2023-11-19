@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
       post 'measurements/dates', to: 'measurements#dates'
       options 'measurements/dates', to: 'measurements#dates'
+
+      post 'measurements/warnings', to: 'measurements#warnings'
+      options 'measurements/warnings', to: 'measurements#warnings'
       # post 'measurements', to: 'measurements#filter'
 
       # post 'entities/filter', to: 'entities#filter'
