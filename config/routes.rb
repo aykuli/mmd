@@ -5,16 +5,14 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'family', to: 'users#family'
 
-      post 'measurements/dates', to: 'measurements#dates'
-      options 'measurements/dates', to: 'measurements#dates'
+      post 'measurements/:query', to: 'measurements#query',
+           defaults: { query: 'dates' },
+           constraints: { query: /(dates|warnings)/ }
+      options 'measurements/:query', to: 'measurements#query',
+           defaults: { query: 'dates' },
+           constraints: { query: /(dates|warnings)/ }
 
-      post 'measurements/warnings', to: 'measurements#warnings'
-      options 'measurements/warnings', to: 'measurements#warnings'
-      # post 'measurements', to: 'measurements#filter'
-
-      # post 'entities/filter', to: 'entities#filter'
-      # get ':entity', to: 'entities#list'
-      # post ':entity', to: 'entities#list'
+      post ':entity', to: 'measurements#list'
     end
   end
 end
