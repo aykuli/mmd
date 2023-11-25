@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
   create_table "entity_groups", force: :cascade do |t|
     t.string "code"
     t.string "title"
+    t.integer "precedence"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "entity_groups_code_idx", unique: true

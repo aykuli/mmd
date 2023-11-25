@@ -14,6 +14,10 @@ class MeasurementsCommand < Dry::Struct
   #   @return [String]
   attribute :entity, Types::String
 
+  # @!attribute [rw] measured_at
+  #   @return [DateTime]
+  attribute :measured_at, Types::DateTime
+
   # @!attribute [rw] user_id
   #   @return [Integer]
   attribute :user_id, Types::Integer

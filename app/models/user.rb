@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validate :email_correct?, on: :create
   validates :gender, presence: true
 
-  belongs_to :parent, class_name: 'User'
+  belongs_to :parent, class_name: 'User', optional: true
 
   has_many :entities, class_name: 'EntityUserRelation', dependent: :restrict_with_exception
   has_many :measurements, dependent: :restrict_with_exception

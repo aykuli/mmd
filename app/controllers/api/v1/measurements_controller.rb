@@ -11,6 +11,8 @@ module Api
         action_command = command.new permitted_params(command)
         result = use_case.send action, action_command
 
+        return failure unless result.successful?
+
         render json: result.payload.map { presenter.call _1 }
       end
 
@@ -19,6 +21,8 @@ module Api
 
         action_command = command.new permitted_params(command)
         result = use_case.entity action_command
+
+        return failure unless result.successful?
 
         render json: result.payload.map { presenter.call _1 }
       end
@@ -39,6 +43,10 @@ module Api
 
       # @return [Dry::Container]
       def ioc = Rails.configuration.ioc
+
+      def failure
+        render status: :unprocessable_entity
+      end
     end
   end
 end
