@@ -42,6 +42,6 @@ module RailsTouch
     config.api_only = true
 
     # Default locale for whole application
-    config.i18n.default_locale = :ru
+    # config.i18n.default_locale = :ru
   end
 end

@@ -27,6 +27,7 @@ class CreateEntities < ActiveRecord::Migration[7.1]
     create_table :entity_groups do |t|
       t.string :code
       t.string :title
+      t.integer :precedence
 
       t.timestamps
     end
