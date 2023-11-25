@@ -14,14 +14,13 @@ module Api
         render json: result.payload.map { presenter.call _1 }
       end
 
+      def entity
+        return { status: :ok } if request.method == 'OPTIONS'
 
-      def list
-        entity_code = params[:entity]
-        entity = Entity.find_by code: entity_code, gender: :female
-        measurements = Measurement.where entity_id: entity.id
+        action_command = command.new permitted_params(command)
+        result = use_case.entity action_command
 
-        render status: :ok, json: { measurements: measurements.map { presenter.call _1 } }
-
+        render json: result.payload.map { presenter.call _1 }
       end
 
       private

@@ -12,7 +12,8 @@ Rails.application.routes.draw do
            defaults: { query: 'dates' },
            constraints: { query: /(dates|warnings)/ }
 
-      post ':entity', to: 'measurements#list'
+      post ':entity', to: 'measurements#entity'
+      options ':entity', to: 'measurements#entity'
     end
   end
 end

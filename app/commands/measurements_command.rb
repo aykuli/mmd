@@ -10,6 +10,10 @@ class MeasurementsCommand < Dry::Struct
 
   register
 
+  # @!attribute [rw] entity
+  #   @return [String]
+  attribute :entity, Types::String
+
   # @!attribute [rw] user_id
   #   @return [Integer]
   attribute :user_id, Types::Integer
