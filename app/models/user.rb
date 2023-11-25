@@ -12,13 +12,12 @@ class User < ApplicationRecord
   validate :email_correct?, on: :create
   validates :gender, presence: true
 
-  has_many :parents_children, foreign_key: :parent_id, dependent: :destroy
-  has_many :relatives, through: :parents_children, source: :child, foreign_key: :parent_id
+  belongs_to :parent, class_name: 'User'
 
   has_many :entities, class_name: 'EntityUserRelation', dependent: :restrict_with_exception
-  has_many :sessions, dependent: :destroy, inverse_of: :user
+  has_many :measurements, dependent: :restrict_with_exception
 
-  def parent = User.find_by(id: parent_id)
+  has_many :sessions, dependent: :destroy
 
   private
 

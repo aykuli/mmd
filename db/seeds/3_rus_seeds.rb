@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 ayn = User.find_by(first_name: 'Ayn')
-ayn.children
-user = User.find_or_create_by! first_name: 'Rus', last_name: nil, parent_id: ayn.id, gender: :male, password_digest: ayn.password_digest
+user = User.find_or_create_by! first_name: 'Rus', last_name: nil, parent_id: ayn.id, gender: :male, password_digest: ayn.password_digest, member: 'son'
 
 hematokrit = Entity.find_by code: 'hct'
 EntityUserRelation.find_or_create_by! user:, entity: hematokrit

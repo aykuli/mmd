@@ -2,7 +2,7 @@
 
 blood_group = EntityGroup.find_by code: 'blood'
 Entity.find_or_create_by! code: 'hemoglobin', title: 'Гемоглобин', group_id: blood_group.id,
-                          min: 120, max: 140, unit: ' г/л', gender: :female,
+                          min: 120, max: 140, unit: ' г/л', gender: :female, precedence: 1,
                           description: 'Белок, содержащийся в эритроцитах и отвечающий за перенос молекул кислорода к клеткам организма.'
 Entity.find_or_create_by! code: 'hemoglobin', title: 'Гемоглобин', group_id: blood_group.id,
                           min: 135, max: 160, unit: ' г/л', gender: :male,
@@ -120,7 +120,7 @@ Entity.find_or_create_by! code: 'cholesterin', title: 'Холестерин', gr
 
 specific_protein = EntityGroup.find_by code: 'specific_protein'
 Entity.find_or_create_by! code: 'ferritin', title: 'Ферритин', group_id: specific_protein.id,
-                          min: 10, max: 159, unit: ' мкг/л', gender: :female,
+                          min: 10, max: 159, unit: ' мкг/л', gender: :female, precedence: 1,
                           description: 'Ферритин показывает количество накопленного железа в вашем теле, что может дать вашему врачу общую картину уровня железа в вашем организме.'
 Entity.find_or_create_by! code: 'ferritin', title: 'Ферритин', group_id: specific_protein.id,
                           min: 29, max: 397, unit: ' мкг/л', gender: :male,

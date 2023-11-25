@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
     t.string "unit", null: false
     t.text "description"
     t.integer "group_id"
+    t.integer "precedence"
     t.enum "gender", default: "both", enum_type: "entity_gender_enum"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,11 +60,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
     t.enum "warning", enum_type: "measurement_warnings"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "parents_children", id: false, force: :cascade do |t|
-    t.integer "parent_id", null: false
-    t.integer "child_id", null: false
   end
 
   create_table "sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

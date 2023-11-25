@@ -4,5 +4,5 @@
 # TODO by ages
 class Entity < ApplicationRecord
   has_many :users, class_name: 'EntityUserRelation', dependent: :destroy
-  belongs_to :entity_group, foreign_key: :group_id, optional: true
+  belongs_to :group, class_name: 'EntityGroup', optional: true
 end

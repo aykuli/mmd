@@ -16,11 +16,6 @@ class CreateEntities < ActiveRecord::Migration[7.1]
       t.timestamps
     end
 
-    create_table :parents_children, id: false do |t|
-      t.integer :parent_id, null: false
-      t.integer :child_id, null: false
-    end
-
     create_table :sessions, id: :uuid do |t|
       t.integer :user_id, null: false
 
@@ -46,6 +41,7 @@ class CreateEntities < ActiveRecord::Migration[7.1]
       t.string :unit, null: false
       t.text :description
       t.integer :group_id, default: nil
+      t.integer :precedence, default: nil
       t.enum :gender, enum_type: :entity_gender_enum, default: :both
 
       t.timestamps

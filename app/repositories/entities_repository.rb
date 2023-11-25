@@ -1,28 +1,29 @@
 # frozen_string_literal: true
 
-class MeasurementsRepository
+class EntitiesRepository
   include Aux::Pluggable
 
   register initialize: true, memoize: true
 
+  # @!method where(attributes)
+  #   @param attributes [Hash]
+  #   @return [ActiveRecord::Relation<User>]
   # @!method find_by(attributes)
   #   @param attributes [Hash]
-  #   @return [Measurement, nil]
+  #   @return [User, nil]
   # @!method find(id)
   #   @param id [Integer]
   #   @raise [ActiveRecord::RecordNotFound]
-  #   @return [Measurement]
+  #   @return [User]
   # @!method create!(attributes)
   #   @param attributes [Hash]
-  #   @return [Measurement]
+  #   @return [User]
   delegate :where, :find_by, :find, :create!, to: :model
 
-  # @param criteria [Hash]
-  # @return [ActiveRecord::Relation<Measurement>]
-  def filter(criteria = {}) = model.where(**criteria)
+  def filter(**_criteria)
+    private
+  end
 
-  private
-
-  # @return [Class<Measurement>]
-  def model = Measurement
+  # @return [Class<User>]
+  def model = User
 end

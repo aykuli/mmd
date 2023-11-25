@@ -10,3 +10,5 @@ tmp/
 .me_miself_and_i
 config/settings.yml
 
+vendors/
+

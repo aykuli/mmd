@@ -6,17 +6,21 @@ class MeasurementPresenter < ApplicationController
 
   register
 
-  def self.call(measurement, entity)
+  # @param measurement [Measurement]
+  # @return [Hash]
+  def self.call(measurement)
     {
       id: measurement.id,
       measured_at: measurement.measured_at,
       value: measurement.value,
       warning: measurement.warning,
-      max: entity.max,
-      min: entity.min,
-      unit: entity.unit,
-      description: entity.description,
-      gender: entity.gender
+      max: measurement.entity.max,
+      min: measurement.entity.min,
+      unit: measurement.entity.unit,
+      description: measurement.entity.description,
+      gender: measurement.entity.gender,
+      entity_title: measurement.entity.title,
+      entity_code: measurement.entity.code
     }
   end
 end

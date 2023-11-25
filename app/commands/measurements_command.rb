@@ -4,7 +4,7 @@ module Types
   include Dry.Types()
 end
 
-class FilterMeasurementsCommand < Dry::Struct
+class MeasurementsCommand < Dry::Struct
   include ActiveModel::Validations
   include Aux::Pluggable
 
@@ -13,10 +13,6 @@ class FilterMeasurementsCommand < Dry::Struct
   # @!attribute [rw] user_id
   #   @return [Integer]
   attribute :user_id, Types::Integer
-
-  # @!attribute [rw] created_at
-  #   @return [DateTime]
-  attribute :created_at, Types::DateTime
 
   validates :user_id, presence: true
 end
