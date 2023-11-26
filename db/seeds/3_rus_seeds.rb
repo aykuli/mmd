@@ -98,9 +98,9 @@ total_protein = Entity.find_by code: 'total_protein'
 EntityUserRelation.find_or_create_by! user:, entity: total_protein
 Measurement.find_or_create_by! user:, entity: total_protein, measured_at: DateTime.new(2023, 10, 3), value: 72
 
-cholesterin = Entity.find_by code: 'cholesterin'
-EntityUserRelation.find_or_create_by! user:, entity: cholesterin
-Measurement.find_or_create_by! user:, entity: cholesterin, measured_at: DateTime.new(2023, 10, 3), value: 3.56
+cholesterol = Entity.find_by code: 'cholesterol'
+EntityUserRelation.find_or_create_by! user:, entity: cholesterol
+Measurement.find_or_create_by! user:, entity: cholesterol, measured_at: DateTime.new(2023, 10, 3), value: 3.56
 
 alkaline_phosphatase = Entity.find_by code: 'alkaline_phosphatase'
 EntityUserRelation.find_or_create_by! user:, entity: alkaline_phosphatase
