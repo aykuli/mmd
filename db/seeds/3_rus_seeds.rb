@@ -38,46 +38,57 @@ Measurement.find_or_create_by! user:, entity: plt, measured_at: DateTime.new(202
 wbc = Entity.find_by code: 'wbc'
 EntityUserRelation.find_or_create_by! user:, entity: wbc
 Measurement.find_or_create_by! user:, entity: wbc, measured_at: DateTime.new(2023, 10, 3), value: 7.69
+Measurement.find_or_create_by! user:, entity: wbc, measured_at: DateTime.new(2022, 8, 24), value: 6.29
 
 neu = Entity.find_by code: 'neu'
 EntityUserRelation.find_or_create_by! user:, entity: neu
 Measurement.find_or_create_by! user:, entity: neu, measured_at: DateTime.new(2023, 10, 3), value: 2.77
+Measurement.find_or_create_by! user:, entity: neu, measured_at: DateTime.new(2022, 8, 24), value: 3.3
 
 neu_percent = Entity.find_by code: 'neu_percent'
 EntityUserRelation.find_or_create_by! user:, entity: neu_percent
 Measurement.find_or_create_by! user:, entity: neu_percent, measured_at: DateTime.new(2023, 10, 3), value: 36.1, warning: :HIGH
+Measurement.find_or_create_by! user:, entity: neu_percent, measured_at: DateTime.new(2022, 8, 24), value: 52.4
 
 lym = Entity.find_by code: 'lym'
 EntityUserRelation.find_or_create_by! user:, entity: lym
 Measurement.find_or_create_by! user:, entity: lym, measured_at: DateTime.new(2023, 10, 3), value: 3.47
+Measurement.find_or_create_by! user:, entity: lym, measured_at: DateTime.new(2022, 8, 24), value: 2.25
 
 lym_percent = Entity.find_by code: 'lym_percent'
 EntityUserRelation.find_or_create_by! user:, entity: lym_percent
 Measurement.find_or_create_by! user:, entity: lym_percent, measured_at: DateTime.new(2023, 10, 3), value: 45.1, warning: :HIGH
+Measurement.find_or_create_by! user:, entity: lym_percent, measured_at: DateTime.new(2022, 8, 24), value: 35.8
 
 mon = Entity.find_by code: 'mon'
 EntityUserRelation.find_or_create_by! user:, entity: mon
 Measurement.find_or_create_by! user:, entity: mon, measured_at: DateTime.new(2023, 10, 3), value: 0.68
+Measurement.find_or_create_by! user:, entity: mon, measured_at: DateTime.new(2022, 8, 24), value: 0.49
 
 mon_percent = Entity.find_by code: 'mon_percent'
 EntityUserRelation.find_or_create_by! user:, entity: mon_percent
 Measurement.find_or_create_by! user:, entity: mon_percent, measured_at: DateTime.new(2023, 10, 3), value: 8.9
+Measurement.find_or_create_by! user:, entity: mon_percent, measured_at: DateTime.new(2022, 8, 24), value: 7.7
 
 eos = Entity.find_by code: 'eos'
 EntityUserRelation.find_or_create_by! user:, entity: eos
 Measurement.find_or_create_by! user:, entity: eos, measured_at: DateTime.new(2023, 10, 3), value: 0.72, warning: :HIGH
+Measurement.find_or_create_by! user:, entity: eos, measured_at: DateTime.new(2022, 8, 24), value: 0.22
 
 eos_percent = Entity.find_by code: 'eos_percent'
 EntityUserRelation.find_or_create_by! user:, entity: eos_percent
 Measurement.find_or_create_by! user:, entity: eos_percent, measured_at: DateTime.new(2023, 10, 3), value: 9.3, warning: :HIGH
+Measurement.find_or_create_by! user:, entity: eos_percent, measured_at: DateTime.new(2022, 8, 24), value: 3.6
 
 bas = Entity.find_by code: 'bas'
 EntityUserRelation.find_or_create_by! user:, entity: bas
 Measurement.find_or_create_by! user:, entity: bas, measured_at: DateTime.new(2023, 10, 3), value: 0.05
+Measurement.find_or_create_by! user:, entity: bas, measured_at: DateTime.new(2022, 8, 24), value: 0.03
 
 bas_percent = Entity.find_by code: 'bas_percent'
 EntityUserRelation.find_or_create_by! user:, entity: bas_percent
 Measurement.find_or_create_by! user:, entity: bas_percent, measured_at: DateTime.new(2023, 10, 3), value: 0.6
+Measurement.find_or_create_by! user:, entity: bas_percent, measured_at: DateTime.new(2022, 8, 24), value: 0.5
 
 soe = Entity.find_by code: 'soe'
 EntityUserRelation.find_or_create_by! user:, entity: soe
