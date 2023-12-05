@@ -9,4 +9,4 @@ EntityGroup.find_or_create_by! code: 'enzymes',               title: 'Ферме
 EntityGroup.find_or_create_by! code: 'inorganic_substances',  title: 'Неорганические вещества',   precedence: 7
 EntityGroup.find_or_create_by! code: 'vitamins',              title: 'Витамины',                  precedence: 8
 EntityGroup.find_or_create_by! code: 'hormones',              title: 'Гормоны',                   precedence: 9
-EntityGroup.find_or_create_by! code: 'metal',              title: 'Металлы',                   precedence: 10
+EntityGroup.find_or_create_by! code: 'metal', title: 'Металлы', precedence: 10

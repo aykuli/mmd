@@ -17,10 +17,6 @@ class MeasurementsRepository
   #   @return [Measurement]
   delegate :where, :find_by, :find, :create!, to: :model
 
-  # @param criteria [Hash]
-  # @return [ActiveRecord::Relation<Measurement>]
-  def filter(criteria = {}) = model.where(**criteria)
-
   private
 
   # @return [Class<Measurement>]
