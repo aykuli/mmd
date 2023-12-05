@@ -20,9 +20,7 @@ class EntitiesRepository
   #   @return [User]
   delegate :where, :find_by, :find, :create!, to: :model
 
-  def filter(**_criteria)
-    private
-  end
+  private
 
   # @return [Class<User>]
   def model = User

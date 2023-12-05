@@ -22,7 +22,7 @@ class MeasurementsUseCase
     entity = Entity.find_by code: command.entity, gender: [user.gender, 'both']
     return failure(:unprocessable_entity) unless entity
 
-    measurements = repository.filter(user_id: command.user_id, entity_id: entity.id)
+    measurements = repository.where(user_id: command.user_id, entity_id: entity.id)
 
     success(measurements)
   end
@@ -30,7 +30,7 @@ class MeasurementsUseCase
   # @param command [MeasurementsCommand]
   # @return [SuccessCarrier]
   def list(command)
-    measurements = repository.filter(command.attributes).order(measured_at: :desc)
+    measurements = repository.where(command.attributes).order(measured_at: :desc)
 
     success(measurements)
   end
@@ -38,7 +38,7 @@ class MeasurementsUseCase
   # @param command [MeasurementsCommand]
   # @return [SuccessCarrier]
   def dates(command)
-    measurements = repository.filter(command.attributes).select('DISTINCT ON (measured_at) *').order(measured_at: :desc)
+    measurements = repository.where(command.attributes).select('DISTINCT ON (measured_at) *').order(measured_at: :desc)
 
     success(measurements)
   end
@@ -47,7 +47,7 @@ class MeasurementsUseCase
   # @return [SuccessCarrier]
   def warnings(command)
     # TODO: filter only for the last year
-    measurements = repository.filter(**command.attributes, warning: %i[LOW HIGH]).order(measured_at: :desc)
+    measurements = repository.where(**command.attributes, warning: %i[LOW HIGH]).order(measured_at: :desc)
 
     actual_warnings = []
     if measurements.exists?
@@ -65,7 +65,7 @@ class MeasurementsUseCase
   # @param command [MeasurementsCommand]
   # @return [Boolean]
   def highlight?(measurement, command)
-    last_measurement = repository.filter(**command.attributes, entity_id: measurement.entity_id).last
+    last_measurement = repository.where(**command.attributes, entity_id: measurement.entity_id).last
     !last_measurement.warning.nil?
   end
 end
