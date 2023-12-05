@@ -9,13 +9,10 @@ class AuthenticationCommand < Dry::Struct
 
   register
 
-  # @!attribute [rw] token
-  #   @return [String]
   # @!attribute [rw] email
   #   @return [String]
   # @!attribute [rw] password
   #   @return [String]
-  attribute :token, Types::String # TODO: looks like useless
   attribute :email, Types::String
   attribute :password, Types::String
 end

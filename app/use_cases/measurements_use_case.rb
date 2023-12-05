@@ -16,7 +16,7 @@ class MeasurementsUseCase
   # @param command [MeasurementsCommand]
   # @return [SuccessCarrier]
   def entity(command)
-    user = users_repository.find(command.user_id)
+    user = users_repository.find_by(id: command.user_id)
     return failure(:unprocessable_entity) unless user
 
     entity = Entity.find_by code: command.entity, gender: [user.gender, 'both']
