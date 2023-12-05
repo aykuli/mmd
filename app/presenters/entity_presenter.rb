@@ -5,6 +5,8 @@ class EntityPresenter
 
   register
 
+  # @param entity [Entity]
+  # @return [Hash]
   def self.call(entity)
     {
       id: entity.id,

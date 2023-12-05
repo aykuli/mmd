@@ -12,8 +12,9 @@ class FilterEntitiesUseCase
 
   # @param command [FilterEntitiesCommand]
   # @param user [user]
+  # @return [SuccessCarrier]
   def call(command, user)
-    entities = repository.filter(**command.attributes, user_id: user.id)
+    entities = repository.where(**command.attributes, user_id: user.id)
 
     success(entities)
   end

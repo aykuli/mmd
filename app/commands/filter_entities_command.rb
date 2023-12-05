@@ -12,18 +12,15 @@ class FilterEntitiesCommand < Dry::Struct
 
   # @!attribute [rw] user_id
   #   @return [Integer]
-  attribute :user_id, Types::Integer
-
   # @!attribute [rw] limit
   #   @return [Integer]
-  attribute :limit, Types::Integer
-
   # @!attribute [rw] order_by
   #   @return [String]
-  attribute :order_by, Types::String
-
   # @!attribute [rw] gender
   #   @return [String]
+  attribute :user_id, Types::Integer
+  attribute :limit, Types::Integer
+  attribute :order_by, Types::String
   attribute :gender, Types::String
 
   validates :user_id, :gender, presence: true

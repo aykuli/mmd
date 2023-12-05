@@ -6,10 +6,10 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  config.enable_reloading = true
+  config.enable_reloading = false
 
   # Do not eager load code on boot.
-  config.eager_load = false
+  config.eager_load = true
 
   # Show full error reports.
   config.consider_all_requests_local = true
@@ -18,7 +18,7 @@ Rails.application.configure do
   config.server_timing = true
 
   # https://rollbar.com/blog/ruby-on-rails-routingerror/#
-  config.public_file_server.enabled = true
+  config.public_file_server.enabled = false
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -62,4 +62,35 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  config.force_ssl = true
+
+  # Log to STDOUT by default
+  config.logger = ActiveSupport::Logger.new($stdout)
+    .tap  { |logger| logger.formatter = Logger::Formatter.new }
+    .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
+  # Prepend all log lines with the following tags.
+  config.log_tags = [:request_id]
+  # Info include generic and useful information about system operation, but avoids logging too much
+  # information to avoid inadvertent exposure of personally identifiable information (PII). If you
+  # want to log everything, set the level to "debug".
+  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info')
+  config.i18n.fallbacks = true
+  # Don't log any deprecations.
+  config.active_support.report_deprecations = false
+
+  # Do not dump schema after migrations.
+  config.active_record.dump_schema_after_migration = false
+
+  config.hosts = [
+    "mymeddata.ru",     # Allow requests from mymeddata.ru
+    /.*\.mymeddata\.ru/ # Allow requests from subdomains like `www.mymeddata.ru`
+  ]
+
+  Rails.application.config.host_authorization = {
+    response_app: -> env do
+      [400, { "Content-Type" => "text/plain" }, ["Bad Request"]]
+    end
+  }
+ # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end

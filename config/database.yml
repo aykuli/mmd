@@ -1,19 +1,23 @@
 defaults: &defaults
-  adapter: <%= Settings.database.adapter %>
-  encoding: <%= Settings.database.encoding %>
-  host: <%= Settings.database.host %>
-  port: <%= Settings.database.port %>
-  user: <%= Settings.database.username %>
-  password: <%= Settings.database.password %>
-  database: <%= Settings.database.database %>
-  pool: <%= Settings.database.pool || 5 %>
-  checkout_timeout: <%= Settings.database.checkout_timeout || 5 %>
+  adapter: postgresql
+  encoding: unicode
+  host: 0.0.0.0
+  port: 5432
+  user: <%= ENV.fetch("POSTGRES_USER") { 'postgres' } %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") { 'password' } %>
+  database: <%= ENV.fetch("POSTGRES_DB") { 'database' } %>
+  pool: 5
 
 development:
   <<: *defaults
+
 test:
   <<: *defaults
-  database: core_test
+  database: mmd_test
+
+staging:
+  <<: *defaults
+  host: mmd_db
 
 production:
   <<: *defaults
