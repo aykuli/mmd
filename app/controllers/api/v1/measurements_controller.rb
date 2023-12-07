@@ -10,7 +10,6 @@ module Api
         action = params[:query]
         action_command = measurements_command.new permitted_params(measurements_command)
         result = measurements_use_case.send action, action_command
-
         return failure unless result.successful?
 
         render json: result.payload.map { measurement_presenter.call _1 }
@@ -21,7 +20,6 @@ module Api
 
         action_command = measurements_command.new permitted_params(measurements_command)
         result = measurements_use_case.entity action_command
-
         return failure unless result.successful?
 
         render json: result.payload.map { measurement_presenter.call _1 }

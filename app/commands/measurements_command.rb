@@ -12,14 +12,12 @@ class MeasurementsCommand < Dry::Struct
 
   # @!attribute [rw] entity
   #   @return [String]
-  attribute :entity, Types::String
-
   # @!attribute [rw] measured_at
   #   @return [DateTime]
-  attribute :measured_at, Types::DateTime
-
   # @!attribute [rw] user_id
   #   @return [Integer]
+  attribute :entity, Types::String
+  attribute :measured_at, Types::DateTime
   attribute :user_id, Types::Integer
 
   validates :user_id, presence: true

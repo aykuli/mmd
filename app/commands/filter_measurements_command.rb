@@ -12,10 +12,9 @@ class FilterMeasurementsCommand < Dry::Struct
 
   # @!attribute [rw] user_id
   #   @return [Integer]
-  attribute :user_id, Types::Integer
-
   # @!attribute [rw] created_at
   #   @return [DateTime]
+  attribute :user_id, Types::Integer
   attribute :created_at, Types::DateTime
 
   validates :user_id, presence: true
