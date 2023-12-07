@@ -13,6 +13,9 @@ class AuthenticationCommand < Dry::Struct
   #   @return [String]
   # @!attribute [rw] password
   #   @return [String]
+  # @!attribute [rw] token
+  #   @return [String]
   attribute :email, Types::String
   attribute :password, Types::String
+  attribute :token, Types::String
 end

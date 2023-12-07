@@ -5,7 +5,7 @@ module Api
     class UsersController < ApplicationController
       def family
         result = filter_family_use_case.call(nil, nil)
-        render status: :ok, json: { users: result.payload.map { users_presenter.call(_1) } }
+        render status: :ok, json: { users: result.payload.map { user_presenter.call(_1) } }
       end
     end
   end

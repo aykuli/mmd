@@ -5,6 +5,8 @@ class ApplicationController
     private
 
     def authenticate
+      return if request.method == 'OPTIONS'
+
       command = authentication_command.new authentication_params_from_headers
       authenticate_with_token command
 

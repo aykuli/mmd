@@ -6,8 +6,9 @@ module Api
       skip_before_action :authenticate, only: :login
 
       def login
-        command = authentication_command.new authentication_params
+        return { status: :ok } if request.method == 'OPTIONS'
 
+        command = authentication_command.new authentication_params
         authenticate_with_password command
         return render status: :unauthorized, json: { success: false } if @current_user.nil?
 

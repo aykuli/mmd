@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api, format: :json do
     namespace :v1 do
       get 'family', to: 'users#family'
+      options 'login', to: 'authentication#login'
       post 'login', to: 'authentication#login'
 
       post 'measurements/:query', to: 'measurements#query',

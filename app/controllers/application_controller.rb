@@ -46,7 +46,7 @@ class ApplicationController < ActionController::API
   def measurements_use_case = ioc.resolve('measurements_use_case')
 
   # @return [UsersPresenter]
-  def users_presenter = ioc.resolve('users_presenter')
+  def user_presenter = ioc.resolve('user_presenter')
 
   # @return [EntityPresenter]
   def entity_presenter = ioc.resolve('entity_presenter')

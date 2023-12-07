@@ -8,7 +8,7 @@ class UsersRepository
   # @!method find_by(attributes)
   #   @param attributes [Hash]
   #   @return [User, nil]
-  delegate :find_by, to: :model
+  delegate :where, :find_by, to: :model
 
   private
 
