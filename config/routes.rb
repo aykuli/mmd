@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
+  get "/" => "rails/health#show"
 
   namespace :api, format: :json do
     namespace :v1 do
