@@ -10,7 +10,7 @@ class ApplicationController
       command = authentication_command.new authentication_params_from_headers
       authenticate_with_token command
 
-      return render status: :forbidden if @current_user.nil?
+      render status: :forbidden if @current_user.nil?
     end
 
     def authentication_params_from_headers
