@@ -19,8 +19,6 @@ docker container run \
 ```
 
 ```shell
-
-
 perl: warning: Setting locale failed.
 perl: warning: Please check that your locale settings:
  LANGUAGE = (unset),
