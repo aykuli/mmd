@@ -1,15 +1,24 @@
 version: "3.8"
 
 services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d/dev.conf:/etc/nginx/conf.d/dev.conf:ro
+    ports:
+      - 80
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   mmd:
     build: .
-    command: bundle exec rails s -e production
+    command: bundle exec rails s
     depends_on:
-      - db
-    links:
-      - redis
+      - mmd_db
+    # links:
+    #   - redis
     ports:
-      - 3000:5000
+      - 3000:3000
     volumes:
       - mmd:/app
     environment:
@@ -19,7 +28,7 @@ services:
 
   mmd_db:
     image: postgres:16
-    container_name: mmd
+    container_name: mmd_db
     volumes:
       - mmd_db:/var/lib/postgresql/data
     ports:
@@ -29,16 +38,16 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
 
-  mmd_redis:
-    image: redis:4.0.12-alpine
-    ports:
-      - 6379:6379
-    volumes:
-      - mmd_redis:/data
+  # mmd_redis:
+  #   image: redis:4.0.12-alpine
+  #   ports:
+  #     - 6379:6379
+  #   volumes:
+  #     - mmd_redis:/data
 
 volumes:
   mmd:
   mmd_db:
-  mmd_redis:
+  # mmd_redis:
 networks:
   mmd_data_network:
