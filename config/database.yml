@@ -1,11 +1,11 @@
 defaults: &defaults
-  adapter: postgresql
-  encoding: unicode
-  host: dokku-postgres-mmd-db
-  port: 5432
-  user: postgres
-  password: 5236a545df0f2ff74b944ed7019c27d9
-  database: mmd_db
+  adapter: <%= Settings.database.adapter %>
+  encoding: <%= Settings.database.encoding %>
+  host: <%= Settings.database.host %>
+  port: <%= Settings.database.port %>
+  user: <%= Settings.database.username %>
+  password: <%= Settings.database.password %>
+  database: <%= Settings.database.database %>
   pool: <%= Settings.database.pool || 5 %>
   checkout_timeout: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
@@ -13,7 +13,7 @@ development:
   <<: *defaults
 test:
   <<: *defaults
-  database: test_db
+  database: mmd_test
 
 production:
   <<: *defaults

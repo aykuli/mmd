@@ -10,3 +10,7 @@ tmp/
 
 vendors/
 .bundle/
+.env
+config/settings.yml
+
+
