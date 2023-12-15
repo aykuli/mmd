@@ -13,4 +13,5 @@ vendors/
 .env
 config/settings.yml
 
+dokku.md
 
