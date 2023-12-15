@@ -76,4 +76,4 @@ jobs:
           private_key: ${{secrets.SSH_PRIVATE_KEY}}
           command: |
             cd /home/dokku;
-            cp mmd_scaffold.conf mmd/nginx.conf
+            cp mmd_configs/nginx.conf mmd/nginx.conf
