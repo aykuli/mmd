@@ -21,5 +21,5 @@ jobs:
             echo 'Starting to recreate container for application..';
             cd ${{secrets.LAUNCHPAD_FOLDER}};
             docker compose down;
-            docker compose up -d;
+            docker compose up --build -d;
             echo 'Iv finished container creating.';
