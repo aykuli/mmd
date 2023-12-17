@@ -3,5 +3,4 @@
 | | |
 | --- | --- |
 | **Author** | Aynur Shauerman |
-
-Application for monitoring your measurements.
+| **Description** | Application for monitoring your measurements. |

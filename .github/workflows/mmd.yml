@@ -16,7 +16,7 @@ jobs:
           private_key: ${{secrets.SSH_PRIVATE_KEY}}
           command: |
             cd ${{secrets.PROJECT_FOLDER}};
-            git pull;
+            git reset --hard origin/master;
             echo;
             echo 'Starting to recreate container for application..';
             cd ${{secrets.LAUNCHPAD_FOLDER}};
