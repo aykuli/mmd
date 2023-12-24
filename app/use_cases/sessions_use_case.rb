@@ -18,4 +18,14 @@ class SessionsUseCase
       success(repository.create!(user:))
     end
   end
+
+  # @param user [User]
+  # @return [SuccessCarrier]
+  def destroy(user)
+    ActiveRecord::Base.transaction do
+      repository.where(user_id: user.id).destroy_all
+    end
+
+    success
+  end
 end
