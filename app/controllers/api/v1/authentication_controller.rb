@@ -17,6 +17,15 @@ module Api
 
         render json: { token: result.payload.id }
       end
+
+      def logout
+        return { status: :ok } if request.method == 'OPTIONS'
+
+        result = sessions_use_case.destroy current_user
+        return failure unless result.successful?
+
+        render json: { success: true }
+      end
     end
   end
 end

@@ -10,6 +10,7 @@ AllCops:
     - bin/**/*
     - config/routes.rb
     - config/application.rb
+    - config/environments/*
     - db/schema.rb
     - vendor/**/*
     - Gemfile
