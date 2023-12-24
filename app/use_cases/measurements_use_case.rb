@@ -38,7 +38,8 @@ class MeasurementsUseCase
   # @param command [MeasurementsCommand]
   # @return [SuccessCarrier]
   def dates(command)
-    measurements = repository.where(command.attributes).select('DISTINCT ON (measured_at) *').order(measured_at: :desc)
+    measurements = repository.where(command.attributes.except(:limit)).select('DISTINCT ON (measured_at) *').order(measured_at: :desc)
+    measurements = measurements.limit(command.limit) if command.limit
 
     success(measurements)
   end
@@ -46,13 +47,12 @@ class MeasurementsUseCase
   # @param command [MeasurementsCommand]
   # @return [SuccessCarrier]
   def warnings(command)
-    # TODO: filter only for the last year
     measurements = repository.where(**command.attributes, warning: %i[LOW HIGH]).order(measured_at: :desc)
 
     actual_warnings = []
     if measurements.exists?
       measurements.each do
-        actual_warnings << _1 if highlight?(_1, command)
+        actual_warnings << _1 if highlight?(_1, command) && _1.measured_at > 1.year.ago
       end
     end
 
