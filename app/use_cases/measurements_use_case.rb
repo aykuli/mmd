@@ -59,6 +59,12 @@ class MeasurementsUseCase
     success(actual_warnings)
   end
 
+  def all(command)
+    measurements = repository.where(**command.attributes)
+
+    success(measurements)
+  end
+
   private
 
   # @param measurement [Measurement]

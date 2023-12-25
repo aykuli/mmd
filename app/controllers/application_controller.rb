@@ -54,6 +54,9 @@ class ApplicationController < ActionController::API
   # @return [MeasurementPresenter]
   def measurement_presenter = ioc.resolve('measurement_presenter')
 
+  # @return [MeasurementCollectionPresenter]
+  def measurement_collection_presenter = ioc.resolve('measurement_collection_presenter')
+
   # @return [Dry::Container]
   def ioc = Rails.configuration.ioc
 end
