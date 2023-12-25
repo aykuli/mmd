@@ -30,7 +30,7 @@ class MeasurementsUseCase
   # @param command [MeasurementsCommand]
   # @return [SuccessCarrier]
   def list(command)
-    measurements = repository.where(command.attributes).order(measured_at: :desc)
+    measurements = repository.where(command.attributes.except(:limit)).order(measured_at: :desc)
 
     success(measurements)
   end

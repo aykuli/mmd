@@ -16,4 +16,3 @@ config/settings.yml
 dokku.md
 config/credentials/*
 
-/config/credentials/staging.key
