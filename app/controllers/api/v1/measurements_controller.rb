@@ -24,6 +24,16 @@ module Api
 
         render json: result.payload.map { measurement_presenter.call _1 }
       end
+
+      def all
+        return { status: :ok } if request.method == 'OPTIONS'
+
+        command = measurements_command.new permitted_params(measurements_command)
+        result = measurements_use_case.all command
+        return failure unless result.successful?
+
+        render json: measurement_collection_presenter.call(result.payload)
+      end
     end
   end
 end

@@ -10,12 +10,13 @@ Rails.application.routes.draw do
 
       post 'family', to: 'users#family'
 
+      post 'measurements/all', to: 'measurements#all'
       post 'measurements/:query', to: 'measurements#query',
            defaults: { query: 'list' },
            constraints: { query: /(dates|warnings|list)/ }
       options 'measurements/:query', to: 'measurements#query',
            defaults: { query: 'list' },
-           constraints: { query: /(dates|warnings|list)/ }
+           constraints: { query: /(dates|warnings|list|all)/ }
 
       post ':entity', to: 'measurements#entity'
       options ':entity', to: 'measurements#entity'
