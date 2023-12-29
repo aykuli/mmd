@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FilterEntitiesUseCase
+class EntitiesUseCase
   include DIY::Carrierable
   include Aux::Pluggable
 
@@ -13,8 +13,8 @@ class FilterEntitiesUseCase
   # @param command [FilterEntitiesCommand]
   # @param user [user]
   # @return [SuccessCarrier]
-  def call(command, user)
-    entities = repository.where(**command.attributes, user_id: user.id)
+  def filter(command, _user)
+    entities = repository.where(**command.attributes)
 
     success(entities)
   end
