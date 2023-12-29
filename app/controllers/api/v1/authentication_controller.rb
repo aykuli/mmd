@@ -15,7 +15,7 @@ module Api
         result = sessions_use_case.create current_user
         return failure unless result.successful?
 
-        render json: { token: result.payload.id }
+        render json: { token: result.payload.id, user_id: current_user.id }
       end
 
       def logout

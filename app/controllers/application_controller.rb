@@ -24,6 +24,9 @@ class ApplicationController < ActionController::API
   # @return [FilterEntitiesCommand]
   def filter_entities_command = ioc.resolve('filter_entities_command')
 
+  # @return [AddUserCommand]
+  def add_user_command = ioc.resolve('add_user_command')
+
   # @return [SessionsRepository]
   def sessions_repository = ioc.resolve('sessions_repository')
 
@@ -36,11 +39,11 @@ class ApplicationController < ActionController::API
   # @return [SessionsUseCase]
   def sessions_use_case = ioc.resolve('sessions_use_case')
 
-  # @return [FilterFamilyUseCase]
-  def filter_family_use_case =ioc.resolve('filter_family_use_case')
+  # @return [UsersUseCase]
+  def users_use_case =ioc.resolve('users_use_case')
 
-  # @return [FilterEntitiesUseCase]
-  def filter_entities_use_case = ioc.resolve('filter_entities_use_case')
+  # @return [EntitiesUseCase]
+  def entities_use_case = ioc.resolve('entities_use_case')
 
   # @return [MeasurementsUseCase]
   def measurements_use_case = ioc.resolve('measurements_use_case')

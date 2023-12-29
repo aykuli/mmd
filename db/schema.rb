@@ -78,6 +78,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
     t.integer "parent_id"
     t.string "member"
     t.boolean "confirmed", default: false, null: false
+    t.date "birth_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

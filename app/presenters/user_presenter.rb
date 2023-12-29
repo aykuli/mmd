@@ -11,7 +11,8 @@ class UserPresenter
     {
       id: user.id,
       first_name: user.first_name,
-      member: user.member
+      member: user.member,
+      parent_id: user.parent_id
     }
   end
 end

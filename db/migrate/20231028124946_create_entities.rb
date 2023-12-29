@@ -12,6 +12,7 @@ class CreateEntities < ActiveRecord::Migration[7.1]
       t.integer :parent_id, default: nil
       t.string :member
       t.boolean :confirmed, default: false, null: false
+      t.date :birth_date
 
       t.timestamps
     end
