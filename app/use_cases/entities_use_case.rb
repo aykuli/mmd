@@ -11,11 +11,18 @@ class EntitiesUseCase
   resolve :entities_repository, as: :repository
 
   # @param command [FilterEntitiesCommand]
-  # @param user [user]
   # @return [SuccessCarrier]
-  def filter(command, _user)
-    entities = repository.where(**command.attributes)
+  def filter(command)
+    entities = repository.where(gender: [command.gender, :both])
 
     success(entities)
+  end
+
+  # @param command [AddEntityCommand]
+  # @return [SuccessCarrier]
+  def add(command)
+    entity = repository.create(**command.attributes)
+
+    success(entity)
   end
 end

@@ -8,7 +8,10 @@ class MeasurementsRepository
   # @!method find_by(attributes)
   #   @param attributes [Hash]
   #   @return [Measurement, nil]
-  delegate :where, to: :model
+  #   # @!method create(attributes)
+  #   #   @param attributes [Hash]
+  #   #   @return [Measurement, nil]
+  delegate :where, :create, to: :model
 
   private
 

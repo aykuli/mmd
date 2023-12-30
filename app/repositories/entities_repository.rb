@@ -8,7 +8,10 @@ class EntitiesRepository
   # @!method where(attributes)
   #   @param attributes [Hash]
   #   @return [ActiveRecord::Relation<Entity>]
-  delegate :where, to: :model
+  # @!method find_by(attributes)
+  #   @param attributes [Hash]
+  #   @return [ActiveRecord::Relation<Entity>]
+  delegate :where, :create, :find_by, to: :model
 
   private
 
