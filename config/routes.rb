@@ -16,6 +16,10 @@ Rails.application.routes.draw do
       post 'measurements/all', to: 'measurements#all'
       options 'measurements/add', to: 'measurements#add'
       post 'measurements/add', to: 'measurements#add'
+      post 'measurements/edit', to: 'measurements#edit'
+      options 'measurements/edit', to: 'measurements#edit'
+      post 'measurements/delete', to: 'measurements#delete'
+      options 'measurements/delete', to: 'measurements#delete'
       post 'measurements/:query', to: 'measurements#query',
            defaults: { query: 'list' },
            constraints: { query: /(dates|warnings|list)/ }

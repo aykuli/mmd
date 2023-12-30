@@ -44,6 +44,26 @@ module Api
 
         render json: measurement_presenter.call(result.payload)
       end
+
+      def edit
+        return { status: :ok } if request.method == 'OPTIONS'
+
+        command = edit_measurement_command.new permitted_params(edit_measurement_command)
+        result = measurements_use_case.edit command
+        return failure unless result.successful?
+
+        render json: measurement_presenter.call(result.payload)
+      end
+
+      def delete
+        return { status: :ok } if request.method == 'OPTIONS'
+
+        command = edit_measurement_command.new permitted_params(edit_measurement_command)
+        result = measurements_use_case.delete command
+        return failure unless result.successful?
+
+        render json: { success: true }
+      end
     end
   end
 end
