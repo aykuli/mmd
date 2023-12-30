@@ -21,8 +21,10 @@ class EntitiesUseCase
   # @param command [AddEntityCommand]
   # @return [SuccessCarrier]
   def add(command)
-    entity = repository.create(**command.attributes)
+    ActiveRecord::Base.transaction do
+      entity = repository.create(**command.attributes)
 
-    success(entity)
+      success(entity)
+    end
   end
 end

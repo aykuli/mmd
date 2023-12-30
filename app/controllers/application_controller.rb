@@ -24,6 +24,9 @@ class ApplicationController < ActionController::API
   # @return [AddMeasurementCommand]
   def add_measurement_command = ioc.resolve('add_measurement_command')
 
+  # @return [EditMeasurementCommand]
+  def edit_measurement_command = ioc.resolve('edit_measurement_command')
+
   # @return [FilterEntitiesCommand]
   def filter_entities_command = ioc.resolve('filter_entities_command')
 

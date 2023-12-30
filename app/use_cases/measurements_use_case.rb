@@ -71,7 +71,7 @@ class MeasurementsUseCase
   end
 
   # @param command [AddMeasurementCommand]
-  # @return [SuccessCarrier]
+  # @return [SuccessCarrier,FailureCarrier]
   def add(command)
     user = users_repository.find_by(id: command.user_id)
     return failure(:unprocessable_entity) unless user
@@ -79,18 +79,51 @@ class MeasurementsUseCase
     entity = entities_repository.find_by(id: command.entity_id)
     return failure(:unprocessable_entity) unless entity
 
-    warning = if BigDecimal(command.value) > entity.max
-                :HIGH
-              elsif BigDecimal(command.value) < entity.min
-                :LOW
-              end
+    warning = get_warning(command, entity)
 
-    measurement = user.measurements.create(**command.attributes.except(:user_id), warning:)
+    ActiveRecord::Base.transaction do
+      measurement = user.measurements.create(**command.attributes.except(:user_id), warning:)
+      success(measurement)
+    end
+  end
+
+  # @param command [EditMeasurementCommand]
+  # @return [SuccessCarrier,FailureCarrier]
+  def edit(command)
+    measurement = repository.find_by(id: command.id)
+    return failure(:unprocessable_entity) unless measurement
+
+    ActiveRecord::Base.transaction do
+      measurement.update!(**command.attributes.except(:id))
+    end
 
     success(measurement)
   end
 
+  # @param command [EditMeasurementCommand]
+  # @return [SuccessCarrier,FailureCarrier]
+  def delete(command)
+    measurement = repository.find_by(id: command.id)
+    return failure(:unprocessable_entity) unless measurement
+
+    ActiveRecord::Base.transaction do
+      measurement.destroy!
+    end
+
+    success
+  end
+
   private
+
+  # @param command [AddMeasurementCommand]
+  # @param entity [Entity]
+  def get_warning(command, entity)
+    if BigDecimal(command.value) > entity.max
+      :HIGH
+    elsif BigDecimal(command.value) < entity.min
+      :LOW
+    end
+  end
 
   # @param measurement [Measurement]
   # @param command [MeasurementsCommand]
