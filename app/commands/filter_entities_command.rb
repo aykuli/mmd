@@ -23,5 +23,5 @@ class FilterEntitiesCommand < Dry::Struct
   attribute :order_by, Types::String
   attribute :gender, Types::String
 
-  validates :user_id, :gender, presence: true
+  validates :gender, presence: true
 end

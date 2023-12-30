@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       post 'users/add', to: 'users#add'
 
       post 'measurements/all', to: 'measurements#all'
+      options 'measurements/add', to: 'measurements#add'
+      post 'measurements/add', to: 'measurements#add'
       post 'measurements/:query', to: 'measurements#query',
            defaults: { query: 'list' },
            constraints: { query: /(dates|warnings|list)/ }
@@ -24,6 +26,10 @@ Rails.application.routes.draw do
 
       post 'entities/filter', to: 'entities#filter'
       options 'entities/filter', to: 'entities#filter'
+      post 'entities/add', to: 'entities#add'
+      options 'entities/add', to: 'entities#add'
+      post 'entities/groups', to: 'entities_groups#list'
+      options 'entities/groups', to: 'entities_groups#list'
 
       post ':entity', to: 'measurements#entity'
       options ':entity', to: 'measurements#entity'

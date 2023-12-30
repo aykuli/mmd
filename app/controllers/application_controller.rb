@@ -21,8 +21,14 @@ class ApplicationController < ActionController::API
   # @return [MeasurementsCommand]
   def measurements_command = ioc.resolve('measurements_command')
 
+  # @return [AddMeasurementCommand]
+  def add_measurement_command = ioc.resolve('add_measurement_command')
+
   # @return [FilterEntitiesCommand]
   def filter_entities_command = ioc.resolve('filter_entities_command')
+
+  # @return [AddEntityCommand]
+  def add_entity_command = ioc.resolve('add_entity_command')
 
   # @return [AddUserCommand]
   def add_user_command = ioc.resolve('add_user_command')
@@ -48,6 +54,9 @@ class ApplicationController < ActionController::API
   # @return [MeasurementsUseCase]
   def measurements_use_case = ioc.resolve('measurements_use_case')
 
+  # @return [EntitiesGroupsUseCase]
+  def entities_groups_use_case = ioc.resolve('entities_groups_use_case')
+
   # @return [UsersPresenter]
   def user_presenter = ioc.resolve('user_presenter')
 
@@ -59,6 +68,9 @@ class ApplicationController < ActionController::API
 
   # @return [MeasurementCollectionPresenter]
   def measurement_collection_presenter = ioc.resolve('measurement_collection_presenter')
+
+  # @return [EntityGroupPresenter]
+  def entity_group_presenter = ioc.resolve('entity_group_presenter')
 
   # @return [Dry::Container]
   def ioc = Rails.configuration.ioc

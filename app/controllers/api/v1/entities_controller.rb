@@ -6,25 +6,22 @@ module Api
       def filter
         return { status: :ok } if request.method == 'OPTIONS'
 
-        carried_res = entities_use_case.filter(filter_entities_command.new(allowed_params), User.find(1))
+        command = filter_entities_command.new permitted_params(filter_entities_command)
+        result = entities_use_case.filter command
+        return failure unless result.successful?
 
-        render status: :ok, json: { entities: carried_res.map { entity_presenter.call(_1) } }
+        render status: :ok, json: { entities: result.payload.map { entity_presenter.call(_1) } }
       end
 
-      def list
+      def add
         return { status: :ok } if request.method == 'OPTIONS'
 
-        entity_code = params[:entity]
-        entity = entities_repository.find_by(code: entity_code, gender: :female)
-        return failure unless entity
+        command = add_entity_command.new permitted_params(add_entity_command)
+        result = entities_use_case.add command
+        return failure unless result.successful?
 
-        measurements = measurements_repository.where(entity_id: entity.id)
-        render status: :ok, json: { measurements: measurements.map { measurement_presenter.call(_1) } }
+        render status: :ok, json: { entities: entity_presenter.call(result.payload) }
       end
-
-      private
-
-      def allowed_params = filter_entities_command.schema.keys.map(&:name)
     end
   end
 end

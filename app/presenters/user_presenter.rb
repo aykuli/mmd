@@ -10,9 +10,13 @@ class UserPresenter
   def self.call(user)
     {
       id: user.id,
-      first_name: user.first_name,
+      email: user.email,
       member: user.member,
-      parent_id: user.parent_id
+      gender: user.gender,
+      parent_id: user.parent_id,
+      last_name: user.last_name,
+      first_name: user.first_name,
+      birth_date: user.birth_date
     }
   end
 end

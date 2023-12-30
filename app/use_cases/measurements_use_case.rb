@@ -12,6 +12,9 @@ class MeasurementsUseCase
   # @!attribute [r] users_repository
   #   @return [UsersRepository]
   resolve :users_repository
+  # @!attribute [r] entities_repository
+  #   @return [EntitiesRepository]
+  resolve :entities_repository
 
   # @param command [MeasurementsCommand]
   # @return [SuccessCarrier]
@@ -59,10 +62,32 @@ class MeasurementsUseCase
     success(actual_warnings)
   end
 
+  # @param command [MeasurementsCommand]
+  # @return [SuccessCarrier]
   def all(command)
     measurements = repository.where(**command.attributes)
 
     success(measurements)
+  end
+
+  # @param command [AddMeasurementCommand]
+  # @return [SuccessCarrier]
+  def add(command)
+    user = users_repository.find_by(id: command.user_id)
+    return failure(:unprocessable_entity) unless user
+
+    entity = entities_repository.find_by(id: command.entity_id)
+    return failure(:unprocessable_entity) unless entity
+
+    warning = if BigDecimal(command.value) > entity.max
+                :HIGH
+              elsif BigDecimal(command.value) < entity.min
+                :LOW
+              end
+
+    measurement = user.measurements.create(**command.attributes.except(:user_id), warning:)
+
+    success(measurement)
   end
 
   private
