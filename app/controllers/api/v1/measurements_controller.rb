@@ -28,11 +28,11 @@ module Api
       def all
         return { status: :ok } if request.method == 'OPTIONS'
 
-        command = measurements_command.new permitted_params(measurements_command)
+        command = all_measurements_command.new permitted_params(all_measurements_command)
         result = measurements_use_case.all command
         return failure unless result.successful?
 
-        render json: measurement_collection_presenter.call(result.payload)
+        render json: measurement_collection_presenter.send("call_grouped_by_#{command.grouped_by}", result.payload)
       end
 
       def add

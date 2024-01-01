@@ -21,6 +21,9 @@ class ApplicationController < ActionController::API
   # @return [MeasurementsCommand]
   def measurements_command = ioc.resolve('measurements_command')
 
+  # @return command [AllMeasurementsCommand]
+  def all_measurements_command = ioc.resolve('all_measurements_command')
+
   # @return [AddMeasurementCommand]
   def add_measurement_command = ioc.resolve('add_measurement_command')
 

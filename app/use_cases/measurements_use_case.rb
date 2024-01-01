@@ -62,10 +62,10 @@ class MeasurementsUseCase
     success(actual_warnings)
   end
 
-  # @param command [MeasurementsCommand]
+  # @param command [AllMeasurementsCommand]
   # @return [SuccessCarrier]
   def all(command)
-    measurements = repository.where(**command.attributes)
+    measurements = repository.where(**command.attributes.except(:grouped_by))
 
     success(measurements)
   end
