@@ -29,9 +29,7 @@ class MeasurementCollectionPresenter < ApplicationController
         entity_group_code = measurement.entity.group&.code || 'unlisted'
         if hash_by_entity_group[entity_group_code].nil?
           hash_by_entity_group[entity_group_code] = [build(measurement)]
-        else
-          addable?(measurement, hash_by_entity_group[entity_group_code])
-
+        elsif addable?(measurement, hash_by_entity_group[entity_group_code])
           hash_by_entity_group[entity_group_code] << build(measurement)
         end
       end
@@ -44,7 +42,7 @@ class MeasurementCollectionPresenter < ApplicationController
     # @param measurement_array [Array<Measurement>]
     # @return [Boolean]
     def addable?(measurement, measurement_array)
-      measurement_array.none? { _1[:entity_id] = measurement.entity_id }
+      measurement_array.none? { _1[:entity_id] == measurement.entity_id }
     end
 
     # @param measurement [Measurement]
