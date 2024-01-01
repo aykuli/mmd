@@ -8,9 +8,9 @@ class MeasurementCollectionPresenter < ApplicationController
   class << self
     # @param collection [Array<Measurement>]
     # @return [Hash]
-    def call(collection)
+    def call_grouped_by_date(collection)
       hash_by_date = {}
-      collection.find_each do |measurement|
+      collection.each do |measurement|
         measured_date = measurement.measured_at
         if hash_by_date[measured_date].nil?
           hash_by_date[measured_date] = [build(measurement)]
@@ -21,7 +21,31 @@ class MeasurementCollectionPresenter < ApplicationController
       hash_by_date.sort.reverse!.to_h
     end
 
+    # @param collection [Array<Measurement>]
+    # @return [Hash]
+    def call_grouped_by_entity(collection)
+      hash_by_entity_group = {}
+      collection.each do |measurement|
+        entity_group_code = measurement.entity.group&.code || 'unlisted'
+        if hash_by_entity_group[entity_group_code].nil?
+          hash_by_entity_group[entity_group_code] = [build(measurement)]
+        else
+          addable?(measurement, hash_by_entity_group[entity_group_code])
+
+          hash_by_entity_group[entity_group_code] << build(measurement)
+        end
+      end
+      hash_by_entity_group.sort.to_h
+    end
+
     private
+
+    # @param measurement [Measurement]
+    # @param measurement_array [Array<Measurement>]
+    # @return [Boolean]
+    def addable?(measurement, measurement_array)
+      measurement_array.none? { _1[:entity_id] = measurement.entity_id }
+    end
 
     # @param measurement [Measurement]
     # @return [Hash]
@@ -31,7 +55,8 @@ class MeasurementCollectionPresenter < ApplicationController
         user_id: measurement.user_id,
         measured_at: measurement.measured_at,
         value: measurement.value,
-        warning: measurement.warning
+        warning: measurement.warning,
+        entity_id: measurement.entity_id
       }.merge(build_entity_fields(measurement)).merge(build_group_fields(measurement))
     end
 
