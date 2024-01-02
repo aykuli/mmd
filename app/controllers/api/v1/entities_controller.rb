@@ -15,6 +15,7 @@ module Api
 
       def add
         return { status: :ok } if request.method == 'OPTIONS'
+        return failure unless current_user.admin?
 
         command = add_entity_command.new permitted_params(add_entity_command)
         result = entities_use_case.add command

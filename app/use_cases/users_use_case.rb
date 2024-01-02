@@ -12,18 +12,17 @@ class UsersUseCase
 
   # @param user [User]
   # @return [SuccessCarrier]
-  def family(_command, user)
-    me = repository.where(id: user.id)
-    relatives = repository.where(parent_id: user.id)
-
-    success(me + relatives)
-  end
+  def list(user) = success(user.visible_users.select('*').uniq)
 
   # @param command [AddUserCommand]
+  # @param user [User]
   # @return [SuccessCarrier]
-  def add(command)
-    user = repository.create(**command.attributes, password: 'password')
-
-    success(user)
+  def add(command, user)
+    ActiveRecord::Base.transaction do
+      new_user = repository.create(**command.attributes, password: 'password')
+      new_user.observers << user
+      new_user.observers << new_user
+      success(new_user)
+    end
   end
 end

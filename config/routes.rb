@@ -8,7 +8,8 @@ Rails.application.routes.draw do
       get 'login', to: 'authentication#login'
       post 'logout', to: 'authentication#logout'
 
-      post 'family', to: 'users#family'
+      options 'users/list', to: 'users#list'
+      post 'users/list', to: 'users#list'
 
       options 'users/add', to: 'users#add'
       post 'users/add', to: 'users#add'

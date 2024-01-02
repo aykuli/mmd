@@ -10,8 +10,6 @@ class AddUserCommand < Dry::Struct
 
   register
 
-  # @!attribute [rw] parent_id
-  #   @return [Integer]
   # @!attribute [rw] gender
   #   @return [String]
   # @!attribute [rw] member
@@ -24,7 +22,6 @@ class AddUserCommand < Dry::Struct
   #   @return [String]
   # @!attribute [rw] birth_date
   #   @return [DateTime]
-  attribute :parent_id,   Types::Integer
   attribute :gender,      Types::String
   attribute :member,      Types::String
   attribute :first_name,  Types::String

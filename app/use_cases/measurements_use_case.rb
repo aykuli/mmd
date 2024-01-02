@@ -25,17 +25,13 @@ class MeasurementsUseCase
     entity = Entity.find_by code: command.entity, gender: [user.gender, 'both']
     return failure(:unprocessable_entity) unless entity
 
-    measurements = repository.where(user_id: command.user_id, entity_id: entity.id)
-
-    success(measurements)
+    success(repository.where(user_id: command.user_id, entity_id: entity.id).order(:measured_at))
   end
 
   # @param command [MeasurementsCommand]
   # @return [SuccessCarrier]
   def list(command)
-    measurements = repository.where(command.attributes.except(:limit)).order(measured_at: :desc)
-
-    success(measurements)
+    success(repository.where(command.attributes.except(:limit)).order(measured_at: :desc))
   end
 
   # @param command [MeasurementsCommand]
@@ -65,9 +61,7 @@ class MeasurementsUseCase
   # @param command [AllMeasurementsCommand]
   # @return [SuccessCarrier]
   def all(command)
-    measurements = repository.where(**command.attributes.except(:grouped_by))
-
-    success(measurements)
+    success(repository.where(**command.attributes.except(:grouped_by)))
   end
 
   # @param command [AddMeasurementCommand]
@@ -82,8 +76,7 @@ class MeasurementsUseCase
     warning = get_warning(command, entity)
 
     ActiveRecord::Base.transaction do
-      measurement = user.measurements.create(**command.attributes.except(:user_id), warning:)
-      success(measurement)
+      success(user.measurements.create(**command.attributes.except(:user_id), warning:))
     end
   end
 
@@ -106,9 +99,7 @@ class MeasurementsUseCase
     measurement = repository.find_by(id: command.id)
     return failure(:unprocessable_entity) unless measurement
 
-    ActiveRecord::Base.transaction do
-      measurement.destroy!
-    end
+    ActiveRecord::Base.transaction {      measurement.destroy! }
 
     success
   end

@@ -8,23 +8,16 @@ class User < ApplicationRecord
 
   before_save { self.email = email.downcase if email }
   validates :first_name, presence: true, length: { minimum: 2, maximum: 100 }
-  validates :email, presence: true, if: -> { parent_id.nil? }
-  validate :email_correct?, on: :create
   validates :gender, presence: true
-
-  belongs_to :parent, class_name: 'User', optional: true
 
   has_many :entities, class_name: 'EntityUserRelation', dependent: :restrict_with_exception
   has_many :measurements, dependent: :restrict_with_exception
 
   has_many :sessions, dependent: :destroy
 
-  private
-
-  def email_correct?
-    return false unless parent_id.nil?
-    return false if URI::MailTo::EMAIL_REGEXP.match?(email)
-
-    errors.add(:email, :invalid)
-  end
+  has_many :observers_user_relations, class_name: 'ObserverUserRelation', foreign_key: :observer_id, dependent: :restrict_with_exception,
+                                      inverse_of: :user_observer_relations
+  has_many :user_observer_relations, class_name: 'ObserverUserRelation', dependent: :restrict_with_exception
+  has_many :visible_users, through: :observers_user_relations, source: :user
+  has_many :observers, through: :user_observer_relations, source: :observer
 end
