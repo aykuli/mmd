@@ -63,6 +63,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "observers_users", id: false, force: :cascade do |t|
+    t.integer "observer_id"
+    t.integer "user_id"
+    t.index ["observer_id", "user_id"], name: "observer_user_idx"
+  end
+
   create_table "sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
@@ -75,10 +81,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
     t.string "first_name"
     t.string "last_name"
     t.enum "gender", default: "female", enum_type: "gender_enum"
-    t.integer "parent_id"
     t.string "member"
     t.boolean "confirmed", default: false, null: false
     t.date "birth_date"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

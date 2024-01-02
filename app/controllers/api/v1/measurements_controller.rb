@@ -37,6 +37,7 @@ module Api
 
       def add
         return { status: :ok } if request.method == 'OPTIONS'
+        return failure unless current_user.admin?
 
         command = add_measurement_command.new permitted_params(add_measurement_command)
         result = measurements_use_case.add command
@@ -47,6 +48,7 @@ module Api
 
       def edit
         return { status: :ok } if request.method == 'OPTIONS'
+        return failure unless current_user.admin?
 
         command = edit_measurement_command.new permitted_params(edit_measurement_command)
         result = measurements_use_case.edit command
@@ -57,6 +59,7 @@ module Api
 
       def delete
         return { status: :ok } if request.method == 'OPTIONS'
+        return failure unless current_user.admin?
 
         command = edit_measurement_command.new permitted_params(edit_measurement_command)
         result = measurements_use_case.delete command

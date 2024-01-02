@@ -10,6 +10,7 @@ module Api
 
       def add
         return { status: :ok } if request.method == 'OPTIONS'
+        return failure unless current_user.admin?
 
         command = add_user_command.new permitted_params(add_user_command)
         result = users_use_case.add command

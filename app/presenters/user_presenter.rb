@@ -13,10 +13,10 @@ class UserPresenter
       email: user.email,
       member: user.member,
       gender: user.gender,
-      parent_id: user.parent_id,
       last_name: user.last_name,
       first_name: user.first_name,
-      birth_date: user.birth_date
+      birth_date: user.birth_date,
+      isAdmin: user.admin
     }
   end
 end

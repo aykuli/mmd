@@ -22,8 +22,9 @@ class UsersUseCase
   # @param command [AddUserCommand]
   # @return [SuccessCarrier]
   def add(command)
-    user = repository.create(**command.attributes, password: 'password')
-
-    success(user)
+    ActiveRecord::Base.transaction do
+      user = repository.create(**command.attributes, password: 'password')
+      success(user)
+    end
   end
 end
