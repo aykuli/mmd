@@ -2,8 +2,10 @@
 
 ayn = User.find_by(first_name: 'Ayn')
 user = User.find_or_create_by! first_name: 'Rus', last_name: nil, gender: :male, password_digest: ayn.password_digest, member: 'son', birth_date: '2010-07-03'
-user.observers << ayn
+user.confirmed = true
 user.save!
+user.observers << ayn
+user.observers << user
 
 hematokrit = Entity.find_by code: 'hct'
 EntityUserRelation.find_or_create_by! user:, entity: hematokrit

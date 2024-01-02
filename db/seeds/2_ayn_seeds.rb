@@ -6,7 +6,10 @@ user.password = 'KAK96vtWJ4i9u7E'
 user.first_name = 'Ayn'
 user.last_name = 'Sha'
 user.birth_date = '1987-02-19'
+user.admin = true
+user.confirmed = true
 user.save!
+user.observers << user
 
 # blood_group
 mcv = Entity.find_by code: 'mcv'

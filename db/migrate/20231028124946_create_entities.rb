@@ -12,18 +12,16 @@ class CreateEntities < ActiveRecord::Migration[7.1]
       t.string :member
       t.boolean :confirmed, default: false, null: false
       t.date :birth_date
-      t.boolean :admin, default: false
+      t.boolean :admin, default: false, null: false
 
       t.timestamps
     end
-
 
     create_table :observers_users, id: false do |t|
       t.integer :observer_id
       t.integer :user_id
     end
-    add_index :observers_users, [:observer_id, :user_id], name: :observer_user_idx
-
+    add_index :observers_users, %i[observer_id user_id], name: :observer_user_idx
 
     create_table :sessions, id: :uuid do |t|
       t.integer :user_id, null: false

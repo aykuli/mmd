@@ -84,7 +84,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_124946) do
     t.string "member"
     t.boolean "confirmed", default: false, null: false
     t.date "birth_date"
-    t.boolean "admin", default: false
+    t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ObserverUserRelation < ApplicationRecord
   self.table_name = :observers_users
 

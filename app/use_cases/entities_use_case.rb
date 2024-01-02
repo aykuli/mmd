@@ -13,18 +13,14 @@ class EntitiesUseCase
   # @param command [FilterEntitiesCommand]
   # @return [SuccessCarrier]
   def filter(command)
-    entities = repository.where(gender: [command.gender, :both])
-
-    success(entities)
+    success(repository.where(gender: [command.gender, :both]).order(:measured_at))
   end
 
   # @param command [AddEntityCommand]
   # @return [SuccessCarrier]
   def add(command)
     ActiveRecord::Base.transaction do
-      entity = repository.create(**command.attributes)
-
-      success(entity)
+      success(repository.create(**command.attributes))
     end
   end
 end
